@@ -33,7 +33,7 @@ var questions = [
         ],
     },
     {
-        num : 3,
+        num : 4,
         question: "How long you should wash your Hands?",
         answer: "40 seconds",
         options: [
