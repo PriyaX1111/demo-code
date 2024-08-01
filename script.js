@@ -102,9 +102,22 @@ function UserAnswer(answer) {
 again_quiz.onclick = () => {
     quiz_box.classList.remove("inactive");
     result_box.classList.add("inactive");
+
+    reset();
+}
+
+exit.onclick = () =>{
+    start_btn.classList.remove("inactive");
+    result_box.classList.add("inactive");
+    reset();
+}
+
+
+function reset(){
     que_index = 0;
     right_answers = 0;
     wrong_answers = 0;
+    next_btn.innerText = "Next Question";
     count_ques.innerHTML = que_index + 1;
     ShowQuestion(que_index);
 }

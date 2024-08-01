@@ -14,17 +14,17 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    border: 2px solid #fff;
+    border: 2px solid #000000;
     padding: 10px 30px;
-    color: #fff;
+    color: #000000;
     border-radius: 10px;
     font-size: 24px;
     cursor: pointer;
     transition: all 0.3s;
 }
  .start_quiz:hover{
-    background: #fff;
-    color: #911ae2;
+    background: #000000;
+    color: #ffffff;
  }
 
 .inactive{
