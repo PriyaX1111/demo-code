@@ -69,6 +69,8 @@ next_btn.onclick = () => {
     }
 }
 
+
+//javascrip to get users answer and give the feeds if it is correct of wrong with color and correct answer
 function UserAnswer(answer) {
     let UserAns = answer.innerText;
     let correctAns = questions[que_index].answer;
@@ -99,6 +101,7 @@ function UserAnswer(answer) {
 
 }
 
+//javascript code for again_quiz button
 again_quiz.onclick = () => {
     quiz_box.classList.remove("inactive");
     result_box.classList.add("inactive");
@@ -106,6 +109,7 @@ again_quiz.onclick = () => {
     reset();
 }
 
+//javascript code for exit button
 exit.onclick = () =>{
     start_btn.classList.remove("inactive");
     result_box.classList.add("inactive");
