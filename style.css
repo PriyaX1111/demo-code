@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 body{
-    background: #fcdada;
+    background: #daeffc;
     font-family: 'Roboto', sans-serif;
 } 
 .start_quiz{
@@ -168,9 +168,9 @@ body{
 }
 
 .result-footer .again-quiz{
-    background: #fcdada;
+    background: #daeffc;
     color: #000000;
-    border-color: #fcdada;
+    border-color: #daeffc;
     cursor: pointer;
 }
 
@@ -184,10 +184,11 @@ body{
     background: #fff;
     color: #000000;
     border-color: #fff;
+    cursor: pointer;
 }
 
 .result-footer .exit:hover{
-    background: #fcdada;
+    background: #daeffc;
     color: #000000;
-    border-color: #fcdada;
+    border-color: #daeffc;
 }

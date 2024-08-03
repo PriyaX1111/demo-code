@@ -15,14 +15,16 @@ const total_ques_r = document.querySelector(".total-ques span");
 const right_ans_r = document.querySelector(".right-ans span");
 const wrong_ans_r = document.querySelector(".wrong-ans span");
 const percentage = document.querySelector(".percentage span");
-
+// variables for again and exit controls
 const again_quiz = document.querySelector(".result-footer .again-quiz");
 const exit = document.querySelector(".result-footer .exit");
+
+let shuffledQuestion, currentQuestionIndex
 
 //start btn onclick event
 start_btn.onclick = () => {
     quiz_box.classList.remove("inactive");
-    start_btn.classList.add("inactive");
+    start_btn.classList.add("inactive");   
 }
 
 total_q.innerText = questions.length;
@@ -35,8 +37,12 @@ var wrong_answers = 0;
 count_ques.innerHTML = que_index + 1;
 ShowQuestion(que_index);
 
+//function to show question in loop 
+
 function ShowQuestion(q_index) {
-    ques_text.innerText = questions[q_index].num + ". " + questions[q_index].question;
+   
+    // ques_text.innerText = questions[q_index].num + ". " + questions[q_index].question;
+    ques_text.innerText = "Ques: " + questions[q_index].question;
     var option_statement = "";
     for (var i = 0; i < questions[que_index].options.length; i++) {
         option_statement += `<div class="option">${questions[que_index].options[i]}</div>`;
@@ -50,6 +56,8 @@ function ShowQuestion(q_index) {
     }
     next_btn.classList.add("inactive");
 }
+
+//onclick event for next function
 
 next_btn.onclick = () => {
     que_index++;
@@ -123,5 +131,7 @@ function reset(){
     wrong_answers = 0;
     next_btn.innerText = "Next Question";
     count_ques.innerHTML = que_index + 1;
+    shuffledQuestion = questions.sort(() => Math.random() - .5); 
     ShowQuestion(que_index);
+    ShowQuestion(shuffledQuestion[que_index])
 }
