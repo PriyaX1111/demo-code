@@ -18,13 +18,23 @@ const percentage = document.querySelector(".percentage span");
 // variables for again and exit controls
 const again_quiz = document.querySelector(".result-footer .again-quiz");
 const exit = document.querySelector(".result-footer .exit");
-
+//variable to shuffle question after click on again quiz
 let shuffledQuestion, currentQuestionIndex
+// const for audio
+const RightAudio = new Audio();
+RightAudio.src = "./correctAudio.mp3"
+const WrongAudio = new Audio();
+WrongAudio.src = "./wrongAudio.mp3"
+//var to change progress bar value
+let currentStep = 1;
+const maxSteps = 3;
+const progress = document.getElementById("progress-bar")
+
 
 //start btn onclick event
 start_btn.onclick = () => {
     quiz_box.classList.remove("inactive");
-    start_btn.classList.add("inactive");   
+    start_btn.classList.add("inactive");
 }
 
 total_q.innerText = questions.length;
@@ -40,7 +50,7 @@ ShowQuestion(que_index);
 //function to show question in loop 
 
 function ShowQuestion(q_index) {
-   
+
     // ques_text.innerText = questions[q_index].num + ". " + questions[q_index].question;
     ques_text.innerText = "Ques: " + questions[q_index].question;
     var option_statement = "";
@@ -72,10 +82,12 @@ next_btn.onclick = () => {
         wrong_ans_r.innerText = wrong_answers;
         percentage.innerText = ((right_answers * 100) / questions.length).toFixed(2) + "%"; //percentage formula
     }
+
     if (questions.length - 1 == que_index) {
         next_btn.innerText = "Finish";
     }
 }
+
 
 
 //javascrip to get users answer and give the feeds if it is correct of wrong with color and correct answer
@@ -90,11 +102,13 @@ function UserAnswer(answer) {
         console.log("%c Right Answer", "color:green");
         answer.classList.add("correct");
         right_answers++;
+        RightAudio.play();
     }
     else {
         console.log("%c Wrong Answer", "color:red");
         answer.classList.add("incorrect");
         wrong_answers++;
+        WrongAudio.play();
 
         for (var i = 0; i < AllOptions2.length; i++) {
             if (AllOptions2[i].innerText == correctAns) {
@@ -118,20 +132,20 @@ again_quiz.onclick = () => {
 }
 
 //javascript code for exit button
-exit.onclick = () =>{
+exit.onclick = () => {
     start_btn.classList.remove("inactive");
     result_box.classList.add("inactive");
     reset();
 }
 
 
-function reset(){
+function reset() {
     que_index = 0;
     right_answers = 0;
     wrong_answers = 0;
     next_btn.innerText = "Next Question";
     count_ques.innerHTML = que_index + 1;
-    shuffledQuestion = questions.sort(() => Math.random() - .5); 
+    shuffledQuestion = questions.sort(() => Math.random() - .5);
     ShowQuestion(que_index);
     ShowQuestion(shuffledQuestion[que_index])
 }
