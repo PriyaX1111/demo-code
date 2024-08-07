@@ -26,10 +26,25 @@ RightAudio.src = "./correctAudio.mp3"
 const WrongAudio = new Audio();
 WrongAudio.src = "./wrongAudio.mp3"
 //var to change progress bar value
+const upload = () =>{
+    const progressBar = document.querySelector ('.progressBar')
+    progressBar.setAttribute('id', 'play-animation')
+}
+
 let currentStep = 1;
 const maxSteps = 3;
 const progress = document.getElementById("progress-bar")
 
+const startingSec = 10;
+let time = startingSec * 60;
+const countdownEl = document.getElementById('countdown');
+setInterval(updateCountdown, 1000);
+
+function updateCountdown(){
+    const seconds = time % 60;
+    countdownEl.innerHTML = `${seconds}`;
+    time--;
+}
 
 //start btn onclick event
 start_btn.onclick = () => {
@@ -50,7 +65,7 @@ ShowQuestion(que_index);
 //function to show question in loop 
 
 function ShowQuestion(q_index) {
-
+   
     // ques_text.innerText = questions[q_index].num + ". " + questions[q_index].question;
     ques_text.innerText = "Ques: " + questions[q_index].question;
     var option_statement = "";
@@ -89,12 +104,12 @@ next_btn.onclick = () => {
 }
 
 
-
 //javascrip to get users answer and give the feeds if it is correct of wrong with color and correct answer
 function UserAnswer(answer) {
     let UserAns = answer.innerText;
     let correctAns = questions[que_index].answer;
     var AllOptions2 = options_box.querySelectorAll(".option");
+ 
 
     next_btn.classList.remove("inactive");
 

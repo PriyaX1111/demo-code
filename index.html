@@ -10,12 +10,17 @@
 </head>
 
 <body>
-    <div class="start_quiz ">Start Quiz</div>
+    <div class="start_quiz">Start Quiz</div>
         <div class="quiz-box inactive">
-            <!-- <div class="progress-label">{progress}%</div> -->
+            <div class="watch">
+                <div><i class="fa-solid fa-stopwatch" style="font-size: 30px;"></i></div>
+                <div class="countdown">20s</div>
+            </div>
             <div class="progress-bar">
                 <div class="progress-bar-fill"></div>                
+                <!-- <div class="progress-label">{progress}%</div> -->
             </div>
+
             <h2 class="ques_text"></h2>
             <div class="options">
                 <!-- <div class="option">Treating the patient, using validated knowledge, resources and skill for their satisfaction?<i class="fa fa-times"></i></div>
@@ -28,7 +33,7 @@
                     <span class="count_ques"></span> of <span class="total_ques"></span> Questions
                  </div>
                  <div class="footer-right">
-                     <div class="next-btn inactive">Next Question</div>
+                     <div class="next-btn inactive" onclick="upload()">Next Question</div>
                  </div>
              </div>
         </div>
