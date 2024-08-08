@@ -29,23 +29,7 @@ WrongAudio.src = "./wrongAudio.mp3"
 const upload = () =>{
     const progressBar = document.querySelector ('.progressBar')
     progressBar.setAttribute('id', 'play-animation')
-}
-
-let currentStep = 1;
-const maxSteps = 3;
-const progress = document.getElementById("progress-bar")
-
-const startingSec = 10;
-let time = startingSec * 60;
-const countdownEl = document.getElementById('countdown');
-setInterval(updateCountdown, 1000);
-
-function updateCountdown(){
-    const seconds = time % 60;
-    countdownEl.innerHTML = `${seconds}`;
-    time--;
-}
-
+} 
 //start btn onclick event
 start_btn.onclick = () => {
     quiz_box.classList.remove("inactive");
@@ -67,7 +51,7 @@ ShowQuestion(que_index);
 function ShowQuestion(q_index) {
    
     // ques_text.innerText = questions[q_index].num + ". " + questions[q_index].question;
-    ques_text.innerText = "Ques: " + questions[q_index].question;
+    ques_text.innerText = questions[q_index].question;
     var option_statement = "";
     for (var i = 0; i < questions[que_index].options.length; i++) {
         option_statement += `<div class="option">${questions[que_index].options[i]}</div>`;
