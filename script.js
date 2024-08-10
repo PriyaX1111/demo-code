@@ -1,4 +1,3 @@
-
 //javascript start here
 const start_btn = document.querySelector(".start_quiz");
 //quiz question and options const
@@ -26,19 +25,15 @@ RightAudio.src = "./correctAudio.mp3"
 const WrongAudio = new Audio();
 WrongAudio.src = "./wrongAudio.mp3"
 //var to change progress bar value
-const upload = () =>{
-    const progressBar = document.querySelector ('.progressBar')
+const upload = () => {
+    const progressBar = document.querySelector('.progressBar')
     progressBar.setAttribute('id', 'play-animation')
-} 
+}
 //start btn onclick event
 start_btn.onclick = () => {
     quiz_box.classList.remove("inactive");
     start_btn.classList.add("inactive");
 }
-
-total_q.innerText = questions.length;
-total_ques_r.innerText = questions.length;
-
 
 var que_index = 0;
 var right_answers = 0;
@@ -49,8 +44,10 @@ ShowQuestion(que_index);
 //function to show question in loop 
 
 function ShowQuestion(q_index) {
-   
-    // ques_text.innerText = questions[q_index].num + ". " + questions[q_index].question;
+    total_q.innerText = questions.length;
+    total_ques_r.innerText = questions.length;
+
+// ques_text.innerText = questions[q_index].num + ". " + questions[q_index].question;
     ques_text.innerText = questions[q_index].question;
     var option_statement = "";
     for (var i = 0; i < questions[que_index].options.length; i++) {
@@ -87,13 +84,13 @@ next_btn.onclick = () => {
     }
 }
 
-
 //javascrip to get users answer and give the feeds if it is correct of wrong with color and correct answer
 function UserAnswer(answer) {
     let UserAns = answer.innerText;
     let correctAns = questions[que_index].answer;
     var AllOptions2 = options_box.querySelectorAll(".option");
- 
+    let WrongAnsArr = []; //array to store wrong answered questions
+
 
     next_btn.classList.remove("inactive");
 
@@ -109,6 +106,13 @@ function UserAnswer(answer) {
         wrong_answers++;
         WrongAudio.play();
 
+        questions = questions.filter(function (UserAns) {
+            return UserAns != correctAns;
+        });
+        // console.log(UserAns, questions[que_index]);
+        WrongAnsArr[que_index] = questions[que_index];
+        console.log(UserAns, WrongAnsArr[que_index]);
+        const quest = questions.push(WrongAnsArr[que_index]);
         for (var i = 0; i < AllOptions2.length; i++) {
             if (AllOptions2[i].innerText == correctAns) {
                 AllOptions2[i].classList.add("correct");
@@ -122,11 +126,11 @@ function UserAnswer(answer) {
 
 }
 
+
 //javascript code for again_quiz button
 again_quiz.onclick = () => {
     quiz_box.classList.remove("inactive");
     result_box.classList.add("inactive");
-
     reset();
 }
 
@@ -146,5 +150,5 @@ function reset() {
     count_ques.innerHTML = que_index + 1;
     shuffledQuestion = questions.sort(() => Math.random() - .5);
     ShowQuestion(que_index);
-    ShowQuestion(shuffledQuestion[que_index])
+    ShowQuestion(shuffledQuestion[que_index]);
 }
