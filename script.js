@@ -25,6 +25,7 @@ RightAudio.src = "./correctAudio.mp3"
 const WrongAudio = new Audio();
 WrongAudio.src = "./wrongAudio.mp3"
 //var to change progress bar value
+
 const upload = () => {
     const progressBar = document.querySelector('.progressBar')
     progressBar.setAttribute('id', 'play-animation')
@@ -47,7 +48,7 @@ function ShowQuestion(q_index) {
     total_q.innerText = questions.length;
     total_ques_r.innerText = questions.length;
 
-// ques_text.innerText = questions[q_index].num + ". " + questions[q_index].question;
+    // ques_text.innerText = questions[q_index].num + ". " + questions[q_index].question;
     ques_text.innerText = questions[q_index].question;
     var option_statement = "";
     for (var i = 0; i < questions[que_index].options.length; i++) {
@@ -99,6 +100,7 @@ function UserAnswer(answer) {
         answer.classList.add("correct");
         right_answers++;
         RightAudio.play();
+        alert("Great Job!! You have earned +1 points");
     }
     else {
         console.log("%c Wrong Answer", "color:red");
