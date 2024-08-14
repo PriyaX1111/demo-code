@@ -95,18 +95,19 @@ function UserAnswer(answer) {
 
     next_btn.classList.remove("inactive");
 
-    if (UserAns == correctAns) {
+    if (UserAns == correctAns) {          
         console.log("%c Right Answer", "color:green");
         answer.classList.add("correct");
         right_answers++;
-        RightAudio.play();
-        alert("Great Job!! You have earned +1 points");
+        RightAudio.play();   
     }
+    
     else {
         console.log("%c Wrong Answer", "color:red");
         answer.classList.add("incorrect");
         wrong_answers++;
         WrongAudio.play();
+
 
         questions = questions.filter(function (UserAns) {
             return UserAns != correctAns;
@@ -121,6 +122,7 @@ function UserAnswer(answer) {
             }
         }
     }
+
 
     for (var j = 0; j < AllOptions2.length; j++) {
         AllOptions2[j].classList.add("disabled");
