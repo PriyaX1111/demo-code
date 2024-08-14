@@ -7,8 +7,10 @@
 }
 
 body {
-    background: #000000;
+    /* background: #694c6e; */
+    background:linear-gradient(90deg, rgba(40, 0, 36, 1) 10%, rgb(112, 50, 121) 35%);
     font-family: 'Roboto', sans-serif;
+
 }
 
 .start_quiz {
