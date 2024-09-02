@@ -21,9 +21,9 @@ const exit = document.querySelector(".result-footer .exit");
 let shuffledQuestion, currentQuestionIndex
 // const for audio
 const RightAudio = new Audio();
-RightAudio.src = "./correctAudio.mp3"
+RightAudio.src = "audio/correctAudio.mp3"
 const WrongAudio = new Audio();
-WrongAudio.src = "./wrongAudio.mp3"
+WrongAudio.src = "audio/wrongAudio.mp3"
 //var to change progress bar value
 
 const upload = () => {
