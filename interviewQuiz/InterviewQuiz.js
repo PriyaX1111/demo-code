@@ -14,6 +14,9 @@ const total_ques_r = document.querySelector(".total-ques span");
 const right_ans_r = document.querySelector(".right-ans span");
 const wrong_ans_r = document.querySelector(".wrong-ans span");
 const percentage = document.querySelector(".percentage span");
+
+// warning 
+const warning = document.querySelector(".warning");
 // variables for again and exit controls
 const again_quiz = document.querySelector(".result-footer .again-quiz");
 const exit = document.querySelector(".result-footer .exit");
@@ -24,6 +27,25 @@ const RightAudio = new Audio();
 RightAudio.src = "audio/correctAudio.mp3"
 const WrongAudio = new Audio();
 WrongAudio.src = "audio/wrongAudio.mp3"
+
+//code for windoe visibilities
+let counter=0
+document.addEventListener('visibilitychange', function () {
+  document.title = document.visibilitystate
+  console.log(document.visibilitystate)
+  console.log(document.hidden)
+  if(document.hidden){
+    counter += 1
+    
+        warning.classList.remove('inactive')
+        quiz_box.classList.add("inactive");
+    
+    // document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
+  }
+})
+
+
+
 //var to change progress bar value
 
 const upload = () => {
@@ -82,6 +104,7 @@ next_btn.onclick = () => {
 
     if (questions.length - 1 == que_index) {
         next_btn.innerText = "Finish";
+        document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
     }
 }
 
@@ -90,7 +113,7 @@ function UserAnswer(answer) {
     let UserAns = answer.innerText;
     let correctAns = questions[que_index].answer;
     var AllOptions2 = options_box.querySelectorAll(".option");
-    let WrongAnsArr = []; //array to store wrong answered questions
+    // let WrongAnsArr = []; //array to store wrong answered questions
 
 
     next_btn.classList.remove("inactive");

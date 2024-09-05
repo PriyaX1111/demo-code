@@ -7,8 +7,8 @@
 }
 
 body {
-    /* background: #694c6e; */
-    background:linear-gradient(90deg, rgba(40, 0, 36, 1) 10%, rgb(208, 104, 224) 35%);
+    background: white;
+    /* background:linear-gradient(90deg, rgba(40, 0, 36, 1) 10%, rgb(208, 104, 224) 35%); */
     font-family: 'Roboto', sans-serif;
 
 }
@@ -53,6 +53,12 @@ body {
     /* font-size: 20px; */
     padding: 5px;
     margin: 10px;
+}
+
+.warning{
+    text-align: center;
+    font-size: 50px;
+    margin-top: 20%;
 }
 
 

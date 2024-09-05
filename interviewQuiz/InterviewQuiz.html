@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
-    <link rel="stylesheet" href="DailyQuiz.css">
+    <link rel="stylesheet" href="InterViewQuiz.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 </head>
 <body>
@@ -32,6 +32,10 @@
             </div>
         </div>
     </div>
+    <div class="warning inactive">
+        <h1>Warning</h1>
+        <h2>The tab has been close since you have change to another tab</h2>
+    </div>
     <div class="result-box inactive">
         <h2>Result</h2>
         <div class="result">
@@ -39,6 +43,7 @@
             <h3 class="right-ans">Right Answer : <span></span></h3>
             <h3 class="wrong-ans">Wrong Answer : <span></span></h3>
             <h3 class="percentage">percentage : <span></span></h3>
+            <div id="info"></div>
         </div>
         <div class="result-footer">
             <div class="again-quiz">Again Quiz</div>
@@ -48,7 +53,7 @@
     <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="js/include-html.min.js"></script> -->
     <script src="questions.js"></script>
-    <script src="DailyQuiz.js"></script>
+    <script src="InterviewQuiz.js"></script>
 </body>
 
 </html>
