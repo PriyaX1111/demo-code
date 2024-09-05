@@ -8,13 +8,18 @@
     <link rel="stylesheet" href="InterViewQuiz.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 </head>
-<body>
+
+<body style="background-color: black;">
     <div class="start_quiz">Start Quiz</div>
+    <div class="login inactive">
+        <a href="login/login.html"></a>
+    </div>
     <div class="quiz-box inactive">
-        <div class="progress-bar">
-            <div class="progress-bar-fill"></div>
-            <!-- <div class="progress-label">{progress}%</div> -->
-        </div>
+        <h1 style="padding-bottom: 15px; text-align: center;">Interview Quiz</h1>
+        <!-- <div class="progress-bar">
+            <div class="progress-bar-fill"></div> -->
+        <!-- <div class="progress-label">{progress}%</div> -->
+        <!-- </div> -->
 
         <h2 class="ques_text"></h2>
         <div class="options">
@@ -35,6 +40,7 @@
     <div class="warning inactive">
         <h1>Warning</h1>
         <h2>The tab has been close since you have change to another tab</h2>
+        <h6>Talk to your mentor to re-open the tab</h6>
     </div>
     <div class="result-box inactive">
         <h2>Result</h2>
@@ -53,7 +59,14 @@
     <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="js/include-html.min.js"></script> -->
     <script src="questions.js"></script>
-    <script src="InterviewQuiz.js"></script>
+    <script src="InterviewQuiz.js">
+        function DisableBackButton() {
+            window.history.forward()
+        }
+        DisableBackButton();
+        window.onload = DisableBackButton;
+        window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+        window.onupload = function () { viod(0) }</script>
 </body>
 
 </html>

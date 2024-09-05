@@ -24,28 +24,23 @@ const exit = document.querySelector(".result-footer .exit");
 let shuffledQuestion, currentQuestionIndex
 // const for audio
 const RightAudio = new Audio();
-RightAudio.src = "audio/correctAudio.mp3"
+RightAudio.src = "../audio/correctAudio.mp3"
 const WrongAudio = new Audio();
-WrongAudio.src = "audio/wrongAudio.mp3"
-
+WrongAudio.src = "../audio/wrongAudio.mp3"
 //code for windoe visibilities
-let counter=0
+let counter = 0
 document.addEventListener('visibilitychange', function () {
-  document.title = document.visibilitystate
-  console.log(document.visibilitystate)
-  console.log(document.hidden)
-  if(document.hidden){
-    counter += 1
-    
+    document.title = document.visibilitystate
+    console.log(document.visibilitystate)
+    console.log(document.hidden)
+    if (document.hidden) {
+        counter += 1
         warning.classList.remove('inactive')
         quiz_box.classList.add("inactive");
-    
-    // document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
-  }
+  
+        // document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
+    }
 })
-
-
-
 //var to change progress bar value
 
 const upload = () => {
@@ -104,7 +99,7 @@ next_btn.onclick = () => {
 
     if (questions.length - 1 == que_index) {
         next_btn.innerText = "Finish";
-        document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
+        document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized " + counter + " times"
     }
 }
 
@@ -118,13 +113,13 @@ function UserAnswer(answer) {
 
     next_btn.classList.remove("inactive");
 
-    if (UserAns == correctAns) {          
+    if (UserAns == correctAns) {
         console.log("%c Right Answer", "color:green");
         answer.classList.add("correct");
         right_answers++;
-        RightAudio.play();   
+        RightAudio.play();
     }
-    
+
     else {
         console.log("%c Wrong Answer", "color:red");
         answer.classList.add("incorrect");

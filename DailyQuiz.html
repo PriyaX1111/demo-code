@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="DailyQuiz.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 </head>
+
 <body>
     <div class="start_quiz">Start Quiz</div>
     <div class="quiz-box inactive">
-        <div class="progress-bar">
-            <div class="progress-bar-fill"></div>
-            <!-- <div class="progress-label">{progress}%</div> -->
-        </div>
+        <h1 style="padding-bottom: 15px; text-align: center;">Daily Quiz</h1>
+        <!-- <div class="progress-bar">
+            <div class="progress-bar-fill"></div> -->
+        <!-- <div class="progress-label">{progress}%</div> -->
+        <!-- </div> -->
 
         <h2 class="ques_text"></h2>
         <div class="options">
@@ -32,6 +34,11 @@
             </div>
         </div>
     </div>
+<!-- popup -->
+<div class="popup inactive" onclick="myFunction()">Click me!
+    <span class="popuptext" id="myPopup">Popup text...</span>
+  </div>
+
     <div class="result-box inactive">
         <h2>Result</h2>
         <div class="result">
