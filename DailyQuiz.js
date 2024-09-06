@@ -17,8 +17,6 @@ const percentage = document.querySelector(".percentage span");
 // variables for again and exit controls
 const again_quiz = document.querySelector(".result-footer .again-quiz");
 const exit = document.querySelector(".result-footer .exit");
-// variable for popup function
-const myFunction = document.querySelector(".myFunction");
 //variable to shuffle question after click on again quiz
 let shuffledQuestion, currentQuestionIndex
 // const for audio
@@ -109,13 +107,6 @@ function UserAnswer(answer) {
     let correctAns = questions[que_index].answer;
     var AllOptions2 = options_box.querySelectorAll(".option");
     let WrongAnsArr = []; //array to store wrong answered questions
-
-    //popup function 
-    function myFunction() {
-        var popup = document.getElementById("myPopup");
-        popup.classList.toggle("show");
-      }
-
 
     next_btn.classList.remove("inactive");
 
