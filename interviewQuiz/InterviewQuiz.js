@@ -27,20 +27,28 @@ const RightAudio = new Audio();
 RightAudio.src = "../audio/correctAudio.mp3"
 const WrongAudio = new Audio();
 WrongAudio.src = "../audio/wrongAudio.mp3"
-//code for windoe visibilities
-let counter = 0
-document.addEventListener('visibilitychange', function () {
-    document.title = document.visibilitystate
-    console.log(document.visibilitystate)
-    console.log(document.hidden)
-    if (document.hidden) {
-        counter += 1
-        warning.classList.remove('inactive')
-        quiz_box.classList.add("inactive");
-  
-        // document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
-    }
-})
+
+    //code for windoe visibilities
+    let counter = 0
+    document.addEventListener('visibilitychange', function () {
+        document.title = document.visibilitystate
+        console.log(document.visibilitystate)
+        console.log(document.hidden)
+        if (document.hidden) {
+            counter += 1
+            warning.classList.remove('inactive')
+            quiz_box.classList.add("inactive");
+            start_btn.classList.add("inactive");
+            // document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
+        }
+    })
+
+// code to disable refresh button
+history.pushState(null, document.title, location.href); 
+history.back(); 
+history.forward(); 
+window.onpopstate = function () 
+{ history.go(1); };
 //var to change progress bar value
 
 const upload = () => {

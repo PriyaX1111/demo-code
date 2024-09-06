@@ -26,16 +26,22 @@ const WrongAudio = new Audio();
 WrongAudio.src = "audio/wrongAudio.mp3"
 
 //code for windoe visibilities
-let counter=0
+let counter = 0
 document.addEventListener('visibilitychange', function () {
-  document.title = document.visibilitystate
-  console.log(document.visibilitystate)
-  console.log(document.hidden)
-  if(document.hidden){
-    counter += 1
-    // document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
-  }
+    document.title = document.visibilitystate
+    console.log(document.visibilitystate)
+    console.log(document.hidden)
+    if (document.hidden) {
+        counter += 1
+        // document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
+    }
 })
+
+// code to disable refresh button
+history.pushState(null, document.title, location.href);
+history.back();
+history.forward();
+window.onpopstate = function () { history.go(1); };
 
 
 
@@ -97,7 +103,8 @@ next_btn.onclick = () => {
 
     if (questions.length - 1 == que_index) {
         next_btn.innerText = "Finish";
-        document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
+        // code to add tab change count
+        document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized " + counter + " times"
     }
 }
 
@@ -110,14 +117,14 @@ function UserAnswer(answer) {
 
     next_btn.classList.remove("inactive");
 
-    if (UserAns == correctAns) {          
+    if (UserAns == correctAns) {
         console.log("%c Right Answer", "color:green");
         answer.classList.add("correct");
         right_answers++;
         RightAudio.play();
 
     }
-    
+
     else {
         console.log("%c Wrong Answer", "color:red");
         answer.classList.add("incorrect");
@@ -129,6 +136,7 @@ function UserAnswer(answer) {
             return UserAns != correctAns;
         });
         // console.log(UserAns, questions[que_index]);
+        // code to add wrong answered question in queue again
         WrongAnsArr[que_index] = questions[que_index];
         console.log(UserAns, WrongAnsArr[que_index]);
         const quest = questions.push(WrongAnsArr[que_index]);
