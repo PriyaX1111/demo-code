@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
+    <title>Interview Quiz</title>
     <link rel="stylesheet" href="InterViewQuiz.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 </head>
@@ -15,12 +15,8 @@
         <a href="login/login.html"></a>
     </div>
     <div class="quiz-box inactive">
+        <div style="font-weight: bold;" id="quiz-timer-left"></div>
         <h1 style="padding-bottom: 15px; text-align: center;">Interview Quiz</h1>
-        <!-- <div class="progress-bar">
-            <div class="progress-bar-fill"></div> -->
-        <!-- <div class="progress-label">{progress}%</div> -->
-        <!-- </div> -->
-
         <h2 class="ques_text"></h2>
         <div class="options">
             <!-- <div class="option">Treating the patient, using validated knowledge, resources and skill for their satisfaction?<i class="fa fa-times"></i></div>
@@ -33,6 +29,7 @@
                 <span class="count_ques"></span> of <span class="total_ques"></span> Questions
             </div>
             <div class="footer-right">
+                <div class="skip-btn inactive" onclick="upload()">Skip Question <i class="fa-solid fa-forward"></i></div>
                 <div class="next-btn inactive" onclick="upload()">Next Question</div>
             </div>
         </div>
@@ -60,6 +57,24 @@
     <script src="js/include-html.min.js"></script> -->
     <script src="questions.js"></script>
     <script src="InterviewQuiz.js"></script>
+
+
+    
+<!-- //code to add timer
+var total_seconds = 60*10;
+var c_minutes = parseInt(total_seconds / 60);
+var c_second = parseInt(total_seconds % 60);
+function CheckTimer() {
+    document.getElementById("quiz-timer-left").innerHTML = 'Time Left: ' + c_minutes + ' minutes ' + c_second + ' seconds';
+    if (total_seconds <= 0) {
+        setTimeout('document.quiz.submit()', 1);
+    } else {
+        total_seconds = total_seconds - 1;
+        c_minutes = parseInt(total_seconds / 60);
+        c_minutes = parseInt(total_seconds % 60);
+        setTimeout("CheckTime()", 1000);
+    }}
+    setTimeout("CheckTime()", 1000); -->
 </body>
 
 </html>

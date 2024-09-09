@@ -63,48 +63,6 @@ body {
     color: #9b2542;
 }
 
-
-.progress-bar {
-    width: 100%;
-    height: 5px;
-    border-radius: 10px;
-    background-color: #e6e6e6;
-    margin-bottom: 10px;
-}
-
-.progress-bar-fill {
-    position: relative;
-    height: 100%;
-    border-radius: 10px;
-    background-color: #2ecc71;
-    transition: width 0.10s ease-out;
-    animation: progress-animation 20s forwards;
-
-}
-
-#play-animation {
-    animation: progress-animation 20s forwards;
-}
-
-
-.progress-label {
-    margin-top: 10px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #444444;
-}
-
-
-@keyframes progress-animation {
-    0% {
-        width: 0%;
-    }
-
-    100% {
-        width: 100%;
-    }
-}
-
 .quiz-box {
     position: absolute;
     top: 50%;
@@ -182,6 +140,10 @@ body {
     font-size: 18px;
 }
 
+.footer-right {
+    display: flex;
+}
+
 .next-btn {
     font-size: 18px;
     font-size: min(16px);
@@ -193,6 +155,21 @@ body {
 }
 
 .next-btn:hover {
+    background: #000000;
+    color: #ffffff;
+}
+.skip-btn {
+    font-size: 18px;
+    font-size: min(16px);
+    border: 2px solid #000000;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.skip-btn:hover {
     background: #000000;
     color: #ffffff;
 }

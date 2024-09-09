@@ -91,6 +91,7 @@ next_btn.onclick = () => {
     que_index++;
     if (questions.length > que_index) {
         count_ques.innerText = que_index + 1;
+        shuffledQuestion = questions.sort(() => Math.random() - .5);
         ShowQuestion(que_index);
     } else {
         console.log("exam complete")
@@ -122,7 +123,6 @@ function UserAnswer(answer) {
         answer.classList.add("correct");
         right_answers++;
         RightAudio.play();
-
     }
 
     else {

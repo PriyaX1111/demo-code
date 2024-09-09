@@ -6,6 +6,7 @@ const ques_text = quiz_box.querySelector(".ques_text");
 const options_box = quiz_box.querySelector(".options");
 //quiz footer and control buttons
 const next_btn = document.querySelector(".next-btn");
+const skip_btn = document.querySelector(".skip-btn");
 const total_q = document.querySelector(".quiz-footer .total_ques");
 const count_ques = document.querySelector(".quiz-footer .count_ques");
 //result box const
@@ -28,33 +29,28 @@ RightAudio.src = "../audio/correctAudio.mp3"
 const WrongAudio = new Audio();
 WrongAudio.src = "../audio/wrongAudio.mp3"
 
-    //code for windoe visibilities
-    let counter = 0
-    document.addEventListener('visibilitychange', function () {
-        document.title = document.visibilitystate
-        console.log(document.visibilitystate)
-        console.log(document.hidden)
-        if (document.hidden) {
-            counter += 1
-            warning.classList.remove('inactive')
-            quiz_box.classList.add("inactive");
-            start_btn.classList.add("inactive");
-            // document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
-        }
-    })
+
+//code for window visibilities
+let counter = 0
+document.addEventListener('visibilitychange', function () {
+    document.title = document.visibilitystate
+    console.log(document.visibilitystate)
+    console.log(document.hidden)
+    if (document.hidden) {
+        counter += 1
+        warning.classList.remove('inactive')
+        quiz_box.classList.add("inactive");
+        start_btn.classList.add("inactive");
+        // document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
+    }
+})
 
 // code to disable refresh button
-history.pushState(null, document.title, location.href); 
-history.back(); 
-history.forward(); 
-window.onpopstate = function () 
-{ history.go(1); };
-//var to change progress bar value
+history.pushState(null, document.title, location.href);
+history.back();
+history.forward();
+window.onpopstate = function () { history.go(1); };
 
-const upload = () => {
-    const progressBar = document.querySelector('.progressBar')
-    progressBar.setAttribute('id', 'play-animation')
-}
 //start btn onclick event
 start_btn.onclick = () => {
     quiz_box.classList.remove("inactive");
@@ -87,6 +83,16 @@ function ShowQuestion(q_index) {
         AllOptions[j].setAttribute("onclick", "UserAnswer(this)");
     }
     next_btn.classList.add("inactive");
+    skip_btn.classList.remove("inactive");
+}
+
+//onclick event for skip function
+skip_btn.onclick = () => {
+    que_index++;
+    if (questions.length > que_index) {
+        count_ques.innerText = que_index + 1;
+        ShowQuestion(que_index);
+    }
 }
 
 //onclick event for next function
@@ -95,6 +101,7 @@ next_btn.onclick = () => {
     que_index++;
     if (questions.length > que_index) {
         count_ques.innerText = que_index + 1;
+        shuffledQuestion = questions.sort(() => Math.random() - .5);
         ShowQuestion(que_index);
     } else {
         console.log("exam complete")
@@ -107,6 +114,7 @@ next_btn.onclick = () => {
 
     if (questions.length - 1 == que_index) {
         next_btn.innerText = "Finish";
+        // tab switch count down
         document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized " + counter + " times"
     }
 }
@@ -134,7 +142,6 @@ function UserAnswer(answer) {
         wrong_answers++;
         WrongAudio.play();
 
-
         questions = questions.filter(function (UserAns) {
             return UserAns != correctAns;
         });
@@ -149,13 +156,11 @@ function UserAnswer(answer) {
         }
     }
 
-
     for (var j = 0; j < AllOptions2.length; j++) {
         AllOptions2[j].classList.add("disabled");
     }
 
 }
-
 
 //javascript code for again_quiz button
 again_quiz.onclick = () => {
