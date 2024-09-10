@@ -15,6 +15,7 @@ const total_ques_r = document.querySelector(".total-ques span");
 const right_ans_r = document.querySelector(".right-ans span");
 const wrong_ans_r = document.querySelector(".wrong-ans span");
 const percentage = document.querySelector(".percentage span");
+const skip_ans_r = document.querySelector(".skip-ans span");
 
 // warning 
 const warning = document.querySelector(".warning");
@@ -60,6 +61,7 @@ start_btn.onclick = () => {
 var que_index = 0;
 var right_answers = 0;
 var wrong_answers = 0;
+var skipAns = 0;
 count_ques.innerHTML = que_index + 1;
 ShowQuestion(que_index);
 
@@ -93,10 +95,21 @@ skip_btn.onclick = () => {
         count_ques.innerText = que_index + 1;
         ShowQuestion(que_index);
     }
+   
+    else {
+        console.log("exam complete")
+        warning.classList.add('inactive')
+        quiz_box.classList.add("inactive");
+        result_box.classList.remove("inactive");
+        right_ans_r.innerText = right_answers;
+        wrong_ans_r.innerText = wrong_answers;
+        skip_ans_r.innerText = skipAns;
+        percentage.innerText = ((right_answers * 100) / questions.length).toFixed(2) + "%"; //percentage formula
+    }
+    
 }
 
 //onclick event for next function
-
 next_btn.onclick = () => {
     que_index++;
     if (questions.length > que_index) {
@@ -109,6 +122,7 @@ next_btn.onclick = () => {
         result_box.classList.remove("inactive");
         right_ans_r.innerText = right_answers;
         wrong_ans_r.innerText = wrong_answers;
+        skip_ans_r.innerText = skipAns;
         percentage.innerText = ((right_answers * 100) / questions.length).toFixed(2) + "%"; //percentage formula
     }
 
@@ -122,6 +136,7 @@ next_btn.onclick = () => {
 //javascrip to get users answer and give the feeds if it is correct of wrong with color and correct answer
 function UserAnswer(answer) {
     let UserAns = answer.innerText;
+    let skipAns = 0;
     let correctAns = questions[que_index].answer;
     var AllOptions2 = options_box.querySelectorAll(".option");
     // let WrongAnsArr = []; //array to store wrong answered questions
@@ -146,14 +161,19 @@ function UserAnswer(answer) {
             return UserAns != correctAns;
         });
         // console.log(UserAns, questions[que_index]);
-        WrongAnsArr[que_index] = questions[que_index];
-        console.log(UserAns, WrongAnsArr[que_index]);
-        const quest = questions.push(WrongAnsArr[que_index]);
+        // WrongAnsArr[que_index] = questions[que_index];
+        // console.log(UserAns, WrongAnsArr[que_index]);
+        // const quest = questions.push(WrongAnsArr[que_index]);
         for (var i = 0; i < AllOptions2.length; i++) {
             if (AllOptions2[i].innerText == correctAns) {
                 AllOptions2[i].classList.add("correct");
             }
         }
+    }
+
+    if(UserAns == skipAns){
+        answer.classList.add("incorrect");
+        skipAns++;
     }
 
     for (var j = 0; j < AllOptions2.length; j++) {

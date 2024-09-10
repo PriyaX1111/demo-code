@@ -21,9 +21,9 @@ const exit = document.querySelector(".result-footer .exit");
 let shuffledQuestion, currentQuestionIndex
 // const for audio
 const RightAudio = new Audio();
-RightAudio.src = "audio/correctAudio.mp3"
+RightAudio.src = "../audio/correctAudio.mp3"
 const WrongAudio = new Audio();
-WrongAudio.src = "audio/wrongAudio.mp3"
+WrongAudio.src = "../audio/wrongAudio.mp3"
 
 //code for windoe visibilities
 let counter = 0
