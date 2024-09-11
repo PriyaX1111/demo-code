@@ -16,12 +16,13 @@ const right_ans_r = document.querySelector(".right-ans span");
 const wrong_ans_r = document.querySelector(".wrong-ans span");
 const percentage = document.querySelector(".percentage span");
 const skip_ans_r = document.querySelector(".skip-ans span");
-
 // warning 
 const warning = document.querySelector(".warning");
 // variables for again and exit controls
 const again_quiz = document.querySelector(".result-footer .again-quiz");
 const exit = document.querySelector(".result-footer .exit");
+//sidebar display code 
+const sidebar = document.getElementById('sidebar');
 //variable to shuffle question after click on again quiz
 let shuffledQuestion, currentQuestionIndex
 // const for audio
@@ -30,6 +31,10 @@ RightAudio.src = "../audio/correctAudio.mp3"
 const WrongAudio = new Audio();
 WrongAudio.src = "../audio/wrongAudio.mp3"
 
+//js code to toggleSidebar
+function toggleSidebar(){
+    sidebar.classList.toggle('show')
+}
 
 //code for window visibilities
 let counter = 0
@@ -160,6 +165,7 @@ function UserAnswer(answer) {
         questions = questions.filter(function (UserAns) {
             return UserAns != correctAns;
         });
+        
         // console.log(UserAns, questions[que_index]);
         // WrongAnsArr[que_index] = questions[que_index];
         // console.log(UserAns, WrongAnsArr[que_index]);

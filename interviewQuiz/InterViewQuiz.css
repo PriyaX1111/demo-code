@@ -7,10 +7,75 @@
 }
 
 body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "navbar navbar" "sidebar main";
     background: white;
     /* background:linear-gradient(90deg, rgba(40, 0, 36, 1) 10%, rgb(208, 104, 224) 35%); */
     font-family: 'Roboto', sans-serif;
+}
 
+nav {
+    display: none;
+    top: 0;
+    position: sticky;
+    align-self: start;
+    grid-area: navbar;
+    background-color: #f7de00;
+    color: rgb(255, 0, 0);
+    padding: 1em;
+}
+
+aside {
+    /* height: 100vh; */
+    /* z-index: 1;
+    height: calc(100vh - 64px);
+    top: 64px; */
+    position: sticky;
+    grid-area: sidebar;
+    background-color: #fff;
+    color: rgb(255, 0, 0);
+}
+
+main {
+    grid-area: main;
+}
+
+@media (max-width: 800px) {
+    body {
+        grid-template-columns: 1fr;
+    }
+
+    aside {
+        z-index: 1;
+        height: calc(100vh - 64px);
+        top: 64px;
+        position: fixed;
+        width: 300px;
+        /* background-color: 0000003e; */
+        display: none;
+    }
+    
+    nav{
+        display: block;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .quiz-box{
+    /* max-width: 550px;
+    padding: 20px 20px;
+    width: 100%; */
+    }
+
+}
+
+main {
+    grid-area: main;
 }
 
 .start_quiz {
@@ -20,7 +85,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     border: 2px solid #000000;
-    padding: 20px 50px;
+    padding: 20px 20px;
     color: #000000;
     border-radius: 10px;
     font-size: 24px;
@@ -56,7 +121,7 @@ body {
     margin: 10px;
 }
 
-.warning{
+.warning {
     text-align: center;
     font-size: 50px;
     margin-top: 20%;
@@ -64,17 +129,18 @@ body {
 }
 
 .quiz-box {
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
     color: #000000;
     border: 2px solid #fff;
     border-radius: 20px;
     box-shadow: 0 0 10px #777;
+    margin: 30px;
     padding: 60px 20px;
     width: 100%;
-    max-width: 600px;
+    max-width: 650px;
     background: rgb(255, 255, 255);
 }
 
@@ -158,6 +224,7 @@ body {
     background: #000000;
     color: #ffffff;
 }
+
 .skip-btn {
     font-size: 18px;
     font-size: min(16px);
