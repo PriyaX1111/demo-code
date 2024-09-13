@@ -47,9 +47,28 @@ document.addEventListener('visibilitychange', function () {
         warning.classList.remove('inactive')
         quiz_box.classList.add("inactive");
         start_btn.classList.add("inactive");
+        
         // document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
     }
 })
+
+//js code to generate and verify otp
+function generateOTP(){
+    let generateOTP = Math.floor(1000+Math.random()*9000);
+    window.localStorage.setItem("otp", generateOTP);
+  }
+  function validateOtp(){
+    let validOtp = document.querySelector("#validOtp").value;
+    let otp = window.localStorage.getItem('otp');
+    if(validOtp == otp){
+      alert("valid opt")
+      warning.classList.add('inactive')
+      quiz_box.classList.remove("inactive");
+    }
+    else{
+      alert("Invalid Otp")
+    }
+  }
 
 // code to disable refresh button
 history.pushState(null, document.title, location.href);
@@ -132,6 +151,7 @@ next_btn.onclick = () => {
     }
 
     if (questions.length - 1 == que_index) {
+        warning.classList.add("inactive");
         next_btn.innerText = "Finish";
         // tab switch count down
         document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized " + counter + " times"
@@ -177,10 +197,10 @@ function UserAnswer(answer) {
         }
     }
 
-    if(UserAns == skipAns){
-        answer.classList.add("incorrect");
-        skipAns++;
-    }
+    // if(UserAns == skipAns){
+    //     answer.classList.add("incorrect");
+    //     skipAns++;
+    // }
 
     for (var j = 0; j < AllOptions2.length; j++) {
         AllOptions2[j].classList.add("disabled");

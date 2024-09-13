@@ -62,7 +62,7 @@ var questions = [
     },
     {
         num: 7,
-        question: "All of the following are good source pf Vitamin A except?",
+        question: "All of the following are good source of Vitamin A except?",
         answer: "White Potatoes",
         options: [
             'Eggs yolks',

@@ -10,7 +10,8 @@
 </head>
 
 <body style="background-color: black;">
-    <nav><button style="font-size: x-large;" onclick="toggleSidebar()">Show</button></nav>
+
+    <nav><button id="navbarBtn" onclick="toggleSidebar()">Show</button></nav>
     <aside id="sidebar">sidebar</aside>
     <div class="start_quiz">Start Quiz</div>
     <div class="login inactive">
@@ -39,9 +40,18 @@
             </div>
         </div>
         <div class="warning inactive">
-            <h1>Warning</h1>
-            <h2>The tab has been close since you have change to another tab</h2>
+            <h2>Warning</h2>
+            <h4>The tab has been close since you have change to another tab</h4>
             <h6>Talk to your mentor to re-open the tab</h6>
+            <h1>OTP</h1>
+            <div>
+                <h1>Verify OTP</h1>
+                <button onclick="generateOTP()">Generate OTP</button>
+                <label for="ValidOtp">Enter the OTP</label>
+                <input type="number" id="validOtp" placeholder="Enter the OTP..."/>
+                <button onclick="validateOtp()">validate OTP</button>
+            </div>
+
         </div>
         <div class="result-box inactive">
             <h2>Result</h2>
