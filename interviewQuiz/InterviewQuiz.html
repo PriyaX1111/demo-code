@@ -19,8 +19,16 @@
     </div>
     <main>
         <div class="quiz-box inactive">
-            <div style="font-weight: bold;" id="quiz-timer-left"></div>
             <h1 style="padding-bottom: 15px; text-align: center;">Interview Quiz</h1>
+            <div class="Time">
+                <div>
+                </div>
+                <div class="timer">
+                    <div style="font-size: x-large;"><i class="fa-solid fa-clock"></i></div>
+                    <div class="time_minute">45<span class="time_sec">:00 minutes</span> </div>   
+                </div> 
+                <div class="time_line"></div>               
+            </div>
             <h2 class="ques_text"></h2>
             <div class="options">
                 <!-- <div class="option">Treating the patient, using validated knowledge, resources and skill for their satisfaction?<i class="fa fa-times"></i></div>
@@ -40,16 +48,15 @@
             </div>
         </div>
         <div class="warning inactive">
-            <h2>Warning</h2>
-            <h4>The tab has been close since you have change to another tab</h4>
+            <h4>Warning</h4>
+            <h5>The tab has been close since you have change to another tab</h5>
             <h6>Talk to your mentor to re-open the tab</h6>
-            <h1>OTP</h1>
-            <div>
-                <h1>Verify OTP</h1>
-                <button onclick="generateOTP()">Generate OTP</button>
-                <label for="ValidOtp">Enter the OTP</label>
-                <input type="number" id="validOtp" placeholder="Enter the OTP..."/>
-                <button onclick="validateOtp()">validate OTP</button>
+            <div class="otp_container">
+                <h5>Verify OTP</h5>
+                <button onclick="generateOTP()" >Generate OTP</button>
+                <label for="ValidOtp" style="font-size: 33px;">Enter the OTP</label> 
+                <input type="number" id="validOtp" placeholder="Enter the OTP..." /> 
+                <button onclick="validateOtp()" >validate OTP</button>
             </div>
 
         </div>

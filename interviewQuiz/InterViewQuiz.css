@@ -53,8 +53,8 @@ main {
         /* background-color: 0000003e; */
         display: none;
     }
-    
-    nav{
+
+    nav {
         display: block;
     }
 
@@ -68,10 +68,10 @@ main {
 }
 
 
-#navbarBtn{
-    font-size: x-large; 
+#navbarBtn {
+    font-size: x-large;
     padding: 4px 44px;
-    background-color: rgba(0, 0 , 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     color: #ffffff;
     border: 2px solid #000000;
     border-radius: 11px;
@@ -101,9 +101,9 @@ main {
 }
 
 @media (max-width: 800px) {
-    .start_quiz{
-    left: 50%;        
-    }    
+    .start_quiz {
+        left: 50%;
+    }
 }
 
 .inactive {
@@ -114,29 +114,94 @@ main {
     pointer-events: none;
 }
 
-.watch {
+.Time {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+.timer {
     display: flex;
     justify-content: space-around;
+    width: 202px;
     align-items: center;
     background: #e1f5de;
-    width: 100px;
-    /* border:2px solid #e4f8ec; */
+    /* width: 100px; */
+    border: 2px solid #e4f8ec;
     border-radius: 40px;
     /* font-size: 20px; */
     padding: 5px;
     margin: 10px;
+    margin-bottom: 30px;
+}
+
+.Time .time_line{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    /* width: 50%; */
+    height: 6px;
+    background: #b7ffac;
+    margin-top: 50px;
+    margin-bottom: 10px;
 }
 
 .warning {
     text-align: center;
     font-size: 44px;
-    margin-top: 20%;
+    margin-top: 11%;
     margin-left: 11px;
     margin-right: 11px;
     color: #9b2542;
 }
 
-#showotp{
+.otp_container {
+    /* position: absolute;  */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    background: #14182f;
+    height: 50vh;
+    margin: 10px 20px 10px 20px;
+    padding: 5%;
+    border-radius: 11%;
+    margin-right: 11%;
+    margin-left: 11%;
+    margin-top: 5%;
+    color: #fff;
+    box-shadow: 0px 0px 20px rgb(255, 255, 255);
+}
+
+.otp_container button {
+    /* width: 222px; */
+    font-size: large;
+    padding: 8px 44px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 11px;
+    box-shadow: 0px 0px 20px rgb(255, 255, 255);
+    background: #14182f;
+}
+
+* #validOtp {
+    width: 222px;
+    font-size: 22px;
+    text-align: center;
+    border: 2px solid #55525c;
+    border-radius: 5px;
+    background: #0b1230;
+    color: #fff;
+    padding: 5px;
+    /* margin-left: 222px; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+#showotp {
     width: 300px;
     height: 77px;
     margin-left: auto;
@@ -169,7 +234,7 @@ main {
 }
 
 @media (max-width: 800px) {
-    .quiz-box{
+    .quiz-box {
         top: 60%;
         left: 42%;
     }
