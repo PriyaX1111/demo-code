@@ -25,6 +25,8 @@ const exit = document.querySelector(".result-footer .exit");
 const sidebar = document.getElementById('sidebar');
 //variable to shuffle question after click on again quiz
 let shuffledQuestion, currentQuestionIndex
+//variable for timer 
+const timeCount = document.querySelector(".timer .time_minute")
 // const for audio
 const RightAudio = new Audio();
 RightAudio.src = "../audio/correctAudio.mp3"
@@ -32,7 +34,7 @@ const WrongAudio = new Audio();
 WrongAudio.src = "../audio/wrongAudio.mp3"
 
 //js code to toggleSidebar
-function toggleSidebar(){
+function toggleSidebar() {
     sidebar.classList.toggle('show')
 }
 
@@ -47,28 +49,28 @@ document.addEventListener('visibilitychange', function () {
         warning.classList.remove('inactive')
         quiz_box.classList.add("inactive");
         start_btn.classList.add("inactive");
-        
+
         // document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
     }
 })
 
 //js code to generate and verify otp
-function generateOTP(){
-    let generateOTP = Math.floor(1000+Math.random()*9000);
+function generateOTP() {
+    let generateOTP = Math.floor(1000 + Math.random() * 9000);
     window.localStorage.setItem("otp", generateOTP);
-  }
-  function validateOtp(){
+}
+function validateOtp() {
     let validOtp = document.querySelector("#validOtp").value;
     let otp = window.localStorage.getItem('otp');
-    if(validOtp == otp){
-      alert("valid opt")
-      warning.classList.add('inactive')
-      quiz_box.classList.remove("inactive");
+    if (validOtp == otp) {
+        alert("valid opt")
+        warning.classList.add('inactive')
+        quiz_box.classList.remove("inactive");
     }
-    else{
-      alert("Invalid Otp")
+    else {
+        alert("Invalid Otp")
     }
-  }
+}
 
 // code to disable refresh button
 history.pushState(null, document.title, location.href);
@@ -80,6 +82,7 @@ window.onpopstate = function () { history.go(1); };
 start_btn.onclick = () => {
     quiz_box.classList.remove("inactive");
     start_btn.classList.add("inactive");
+    startTimer(60); // calling start timer
 }
 
 var que_index = 0;
@@ -119,7 +122,7 @@ skip_btn.onclick = () => {
         count_ques.innerText = que_index + 1;
         ShowQuestion(que_index);
     }
-   
+
     else {
         console.log("exam complete")
         warning.classList.add('inactive')
@@ -130,8 +133,26 @@ skip_btn.onclick = () => {
         skip_ans_r.innerText = skipAns;
         percentage.innerText = ((right_answers * 100) / questions.length).toFixed(2) + "%"; //percentage formula
     }
-    
+
 }
+
+//javascript code for timer
+
+
+function startTimer(time) {
+    counter = setInterval(timer, 1000)
+    function timer() {
+        timeCount.textContent = time + " minutes";
+        time--;
+        if (time < 9) {
+            timeCount.textContent = "0" + timeCount.textContent
+        }
+        if (time < 0) {
+            clearInterval(counter);
+        }
+    }
+}
+
 
 //onclick event for next function
 next_btn.onclick = () => {
@@ -153,6 +174,8 @@ next_btn.onclick = () => {
     if (questions.length - 1 == que_index) {
         warning.classList.add("inactive");
         next_btn.innerText = "Finish";
+        //To stop the watch where user click on finish
+        clearInterval(counter);
         // tab switch count down
         document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized " + counter + " times"
     }
@@ -185,7 +208,7 @@ function UserAnswer(answer) {
         questions = questions.filter(function (UserAns) {
             return UserAns != correctAns;
         });
-        
+
         // console.log(UserAns, questions[que_index]);
         // WrongAnsArr[que_index] = questions[que_index];
         // console.log(UserAns, WrongAnsArr[que_index]);
@@ -202,6 +225,7 @@ function UserAnswer(answer) {
     //     skipAns++;
     // }
 
+    // javascript code to disable other options after one get selected
     for (var j = 0; j < AllOptions2.length; j++) {
         AllOptions2[j].classList.add("disabled");
     }
