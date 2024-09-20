@@ -7,16 +7,19 @@
     <link rel="stylesheet" href="form.css">
 </head>
 <body>
-    <form onsubmit="takeVale()">
+    <form onsubmit="takeVale()" class="form">
         <h1>registration form</h1>
         <input type="text" name="Name" placeholder="Your name" id="name"><br><br>
         <input type="text" name="Qualification" placeholder="Your Qualification" id="qualification"><br><br>
         <input type="number" name="Mobile" placeholder="Your Mobile Number" id="mobile"><br><br>
         <input type="email" name="Email" placeholder="Your Email" id="email"><br><br>
         <input type="password" name="password" placeholder="Your password" id="name"><br><br>
-        <input type="submit" value="signup">
+        <input type="submit" value="signup" class="submit">
     </form>
     <script>
+        // function signup(){
+
+        // }
         function takeVale(){
             var name = document.getElementById("name").value;
             var mobile = document.getElementById("mobile").value;

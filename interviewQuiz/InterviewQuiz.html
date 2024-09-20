@@ -10,9 +10,13 @@
 </head>
 
 <body style="background-color: black;">
-
-    <nav><button id="navbarBtn" onclick="toggleSidebar()">Show</button></nav>
-    <aside id="sidebar">sidebar</aside>
+    <nav><button id="navbarBtn" onclick="toggleSidebar();">Show</button></nav>
+    <aside id="sidebar">
+        <h1>Question Map</h1>
+        <ul class="row">
+            <!-- <li></li> -->
+        </ul>
+    </aside>
     <div class="start_quiz">Start Quiz</div>
     <div class="login inactive">
         <a href="login/login.html"></a>
@@ -21,13 +25,14 @@
         <div class="quiz-box inactive">
             <h1 style="padding-bottom: 15px; text-align: center;">Interview Quiz</h1>
             <div class="Time">
-                <div>
+                <div class="Iocn-flag">
+                    <i class="fa-solid fa-flag"></i>
                 </div>
                 <div class="timer">
                     <div style="font-size: x-large;"><i class="fa-solid fa-clock"></i></div>
-                    <div class="time_minute">45<span class="time_sec">:00 minutes</span> </div>   
-                </div> 
-                <div class="time_line"></div>               
+                    <div class="time_minute">45<span class="time_sec">:00 minutes</span> </div>
+                </div>
+                <div class="time_line"></div>
             </div>
             <h2 class="ques_text"></h2>
             <div class="options">
@@ -53,10 +58,10 @@
             <h6>Talk to your mentor to re-open the tab</h6>
             <div class="otp_container">
                 <h5>Verify OTP</h5>
-                <button onclick="generateOTP()" >Generate OTP</button>
-                <label for="ValidOtp" style="font-size: 33px;">Enter the OTP</label> 
-                <input type="number" id="validOtp" placeholder="Enter the OTP..." /> 
-                <button onclick="validateOtp()" >validate OTP</button>
+                <button onclick="generateOTP()">Generate OTP</button>
+                <label for="ValidOtp" style="font-size: 33px;">Enter the OTP</label>
+                <input type="number" id="validOtp" placeholder="Enter the OTP..." />
+                <button onclick="validateOtp()">validate OTP</button>
             </div>
 
         </div>
@@ -81,23 +86,6 @@
         <script src="InterviewQuiz.js"></script>
     </main>
 
-
-
-    <!-- //code to add timer
-var total_seconds = 60*10;
-var c_minutes = parseInt(total_seconds / 60);
-var c_second = parseInt(total_seconds % 60);
-function CheckTimer() {
-    document.getElementById("quiz-timer-left").innerHTML = 'Time Left: ' + c_minutes + ' minutes ' + c_second + ' seconds';
-    if (total_seconds <= 0) {
-        setTimeout('document.quiz.submit()', 1);
-    } else {
-        total_seconds = total_seconds - 1;
-        c_minutes = parseInt(total_seconds / 60);
-        c_minutes = parseInt(total_seconds % 60);
-        setTimeout("CheckTime()", 1000);
-    }}
-    setTimeout("CheckTime()", 1000); -->
 </body>
 
 </html>

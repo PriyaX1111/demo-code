@@ -3,6 +3,7 @@ const start_btn = document.querySelector(".start_quiz");
 //quiz question and options const
 const quiz_box = document.querySelector(".quiz-box");
 const ques_text = quiz_box.querySelector(".ques_text");
+const row = document.querySelector(".row");
 const options_box = quiz_box.querySelector(".options");
 //quiz footer and control buttons
 const next_btn = document.querySelector(".next-btn");
@@ -32,6 +33,9 @@ const RightAudio = new Audio();
 RightAudio.src = "../audio/correctAudio.mp3"
 const WrongAudio = new Audio();
 WrongAudio.src = "../audio/wrongAudio.mp3"
+
+
+// js code to display form details
 
 //js code to toggleSidebar
 function toggleSidebar() {
@@ -92,14 +96,26 @@ var skipAns = 0;
 count_ques.innerHTML = que_index + 1;
 ShowQuestion(que_index);
 
-//function to show question in loop 
-
+//function to show question in loop
 function ShowQuestion(q_index) {
     total_q.innerText = questions.length;
     total_ques_r.innerText = questions.length;
 
     // ques_text.innerText = questions[q_index].num + ". " + questions[q_index].question;
     ques_text.innerText = questions[q_index].question;
+
+//js code to display num/question in sidebar 
+    // row.innerText = questions[q_index].num;
+    // Create a new list item
+    const listItem = document.createElement('li');
+    // Set the text content of the list item
+    listItem.textContent = `${questions[q_index].num}`;
+    // Append the list item to the output list
+    row.appendChild(listItem);
+    // console.log(questions[q_index].num);
+    // console.log(a);
+
+//loop to display question     
     var option_statement = "";
     for (var i = 0; i < questions[que_index].options.length; i++) {
         option_statement += `<div class="option">${questions[que_index].options[i]}</div>`;
@@ -114,6 +130,8 @@ function ShowQuestion(q_index) {
     next_btn.classList.add("inactive");
     skip_btn.classList.remove("inactive");
 }
+
+
 
 //onclick event for skip function
 skip_btn.onclick = () => {
@@ -137,7 +155,6 @@ skip_btn.onclick = () => {
 }
 
 //javascript code for timer
-
 
 function startTimer(time) {
     counter = setInterval(timer, 1000)

@@ -32,7 +32,18 @@ aside {
     position: sticky;
     grid-area: sidebar;
     background-color: #333;
-    color: rgb(255, 0, 0);
+    color: rgb(228, 231, 53);
+    padding: 10%;
+    text-align: center;
+}
+
+.row li{
+    font-size: 18px;
+    font-size: min(15px);
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    margin: 20px 0;
+    padding: 12px 15px;
 }
 
 main {
@@ -55,6 +66,7 @@ main {
     }
 
     nav {
+        z-index: 1;
         display: block;
     }
 
@@ -117,7 +129,7 @@ main {
 .Time {
     position: relative;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2);
 }
 
@@ -145,6 +157,11 @@ main {
     background: #b7ffac;
     margin-top: 50px;
     margin-bottom: 10px;
+}
+
+.Iocn-flag .fa-solid{
+    font-size: 30px;
+    padding: 10%;
 }
 
 .warning {
