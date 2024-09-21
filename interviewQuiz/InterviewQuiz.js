@@ -104,18 +104,16 @@ function ShowQuestion(q_index) {
     // ques_text.innerText = questions[q_index].num + ". " + questions[q_index].question;
     ques_text.innerText = questions[q_index].question;
 
-//js code to display num/question in sidebar 
-    // row.innerText = questions[q_index].num;
-    // Create a new list item
-    const listItem = document.createElement('li');
-    // Set the text content of the list item
-    listItem.textContent = `${questions[q_index].num}`;
-    // Append the list item to the output list
-    row.appendChild(listItem);
-    // console.log(questions[q_index].num);
-    // console.log(a);
+    //js code to display num/question in sidebar 
+const listItem = document.createElement('button');
+// Set the text content of the list item
+listItem.textContent = `${questions[q_index].num}`;
+row.appendChild(listItem);
+// listItem.onclick = () => alert(`You clicked ${ShowQuestion}`);
+// listItem.onclick = () => ShowQuestion();
 
-//loop to display question     
+
+//loop to display question in question box     
     var option_statement = "";
     for (var i = 0; i < questions[que_index].options.length; i++) {
         option_statement += `<div class="option">${questions[que_index].options[i]}</div>`;
@@ -130,6 +128,7 @@ function ShowQuestion(q_index) {
     next_btn.classList.add("inactive");
     skip_btn.classList.remove("inactive");
 }
+
 
 
 
