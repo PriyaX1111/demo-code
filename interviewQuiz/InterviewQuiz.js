@@ -3,8 +3,9 @@ const start_btn = document.querySelector(".start_quiz");
 //quiz question and options const
 const quiz_box = document.querySelector(".quiz-box");
 const ques_text = quiz_box.querySelector(".ques_text");
-const row = document.querySelector(".row");
 const options_box = quiz_box.querySelector(".options");
+//variable to display sidebar btn
+const row = document.querySelector(".row");
 //quiz footer and control buttons
 const next_btn = document.querySelector(".next-btn");
 const skip_btn = document.querySelector(".skip-btn");
@@ -40,6 +41,7 @@ WrongAudio.src = "../audio/wrongAudio.mp3"
 //js code to toggleSidebar
 function toggleSidebar() {
     sidebar.classList.toggle('show')
+    reset();
 }
 
 //code for window visibilities
@@ -105,15 +107,37 @@ function ShowQuestion(q_index) {
     ques_text.innerText = questions[q_index].question;
 
     //js code to display num/question in sidebar 
-const listItem = document.createElement('button');
-// Set the text content of the list item
-listItem.textContent = `${questions[q_index].num}`;
-row.appendChild(listItem);
-// listItem.onclick = () => alert(`You clicked ${ShowQuestion}`);
-// listItem.onclick = () => ShowQuestion();
+    const listItem = document.createElement('button');
+    // Set the text content of the list item
+    listItem.textContent = `${questions[q_index].num}`;
+    listItem.id = `${questions[q_index].num}`;
+
+    // console.log(questions[q_index].num)
+    // listItem.onclick = () => {alert(`${ShowQuestion}`);}
+    if (UserAnswer == skipAns) {
+        listItem.style.backgroundColor = "green";
+        AllOptions2[j].classList.add("disabled");
+    }
 
 
-//loop to display question in question box     
+    row.appendChild(listItem);
+    listItem.onclick = () => {
+        for (var q = 0; q < questions.length; q++) {
+            if (listItem.id == questions[q_index].num) {
+                ques_text.innerText = questions[q_index].question;
+                options_box.innerHTML = option_statement;
+                var AllOptions = options_box.querySelectorAll(".option");
+                for (var j = 0; j < AllOptions.length; j++) {
+                    AllOptions[j].setAttribute("onclick", "UserAnswer(this)");
+                }
+            }
+            else {
+                console.log('question not available')
+            }
+
+        }
+    }
+    //loop to display question in question box     
     var option_statement = "";
     for (var i = 0; i < questions[que_index].options.length; i++) {
         option_statement += `<div class="option">${questions[que_index].options[i]}</div>`;
@@ -129,8 +153,21 @@ row.appendChild(listItem);
     skip_btn.classList.remove("inactive");
 }
 
+//javascript code for timer
 
-
+function startTimer(time) {
+    counter = setInterval(timer, 1000)
+    function timer() {
+        timeCount.textContent = time + " minutes";
+        time--;
+        if (time < 9) {
+            timeCount.textContent = "0" + timeCount.textContent
+        }
+        if (time < 0) {
+            clearInterval(counter);
+        }
+    }
+}
 
 //onclick event for skip function
 skip_btn.onclick = () => {
@@ -152,23 +189,6 @@ skip_btn.onclick = () => {
     }
 
 }
-
-//javascript code for timer
-
-function startTimer(time) {
-    counter = setInterval(timer, 1000)
-    function timer() {
-        timeCount.textContent = time + " minutes";
-        time--;
-        if (time < 9) {
-            timeCount.textContent = "0" + timeCount.textContent
-        }
-        if (time < 0) {
-            clearInterval(counter);
-        }
-    }
-}
-
 
 //onclick event for next function
 next_btn.onclick = () => {
@@ -192,7 +212,7 @@ next_btn.onclick = () => {
         next_btn.innerText = "Finish";
         //To stop the watch where user click on finish
         clearInterval(counter);
-        // tab switch count down
+        // tab switch count
         document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized " + counter + " times"
     }
 }
@@ -200,7 +220,7 @@ next_btn.onclick = () => {
 //javascrip to get users answer and give the feeds if it is correct of wrong with color and correct answer
 function UserAnswer(answer) {
     let UserAns = answer.innerText;
-    let skipAns = 0;
+    let skipAns = 1;
     let correctAns = questions[que_index].answer;
     var AllOptions2 = options_box.querySelectorAll(".option");
     // let WrongAnsArr = []; //array to store wrong answered questions
@@ -210,14 +230,17 @@ function UserAnswer(answer) {
 
     if (UserAns == correctAns) {
         console.log("%c Right Answer", "color:green");
-        answer.classList.add("correct");
+        // answer.classList.add("correct");
+        answer.classList.add("skip");
+
         right_answers++;
         RightAudio.play();
     }
 
     else {
         console.log("%c Wrong Answer", "color:red");
-        answer.classList.add("incorrect");
+        // answer.classList.add("incorrect");
+        answer.classList.add("skip");
         wrong_answers++;
         WrongAudio.play();
 
@@ -225,21 +248,22 @@ function UserAnswer(answer) {
             return UserAns != correctAns;
         });
 
+    if (UserAns == skipAns) {
+            console.log("%c skip Answer", "color:red");
+            answer.classList.add("skip");
+            skipAns++;
+        }
         // console.log(UserAns, questions[que_index]);
         // WrongAnsArr[que_index] = questions[que_index];
         // console.log(UserAns, WrongAnsArr[que_index]);
         // const quest = questions.push(WrongAnsArr[que_index]);
         for (var i = 0; i < AllOptions2.length; i++) {
             if (AllOptions2[i].innerText == correctAns) {
-                AllOptions2[i].classList.add("correct");
+                // AllOptions2[i].classList.add("correct");
             }
         }
     }
 
-    // if(UserAns == skipAns){
-    //     answer.classList.add("incorrect");
-    //     skipAns++;
-    // }
 
     // javascript code to disable other options after one get selected
     for (var j = 0; j < AllOptions2.length; j++) {
@@ -267,6 +291,7 @@ function reset() {
     que_index = 0;
     right_answers = 0;
     wrong_answers = 0;
+    // listItem = 0;
     next_btn.innerText = "Next Question";
     count_ques.innerHTML = que_index + 1;
     shuffledQuestion = questions.sort(() => Math.random() - .5);

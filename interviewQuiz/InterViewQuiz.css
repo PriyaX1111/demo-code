@@ -37,7 +37,7 @@ aside {
     text-align: center;
 }
 
-.row button{
+.row button {
     font-size: 18px;
     font-size: min(15px);
     border-radius: 5px;
@@ -147,7 +147,7 @@ main {
     margin-bottom: 30px;
 }
 
-.Time .time_line{
+.Time .time_line {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -158,7 +158,7 @@ main {
     margin-bottom: 10px;
 }
 
-.Iocn-flag .fa-solid{
+.Iocn-flag .fa-solid {
     font-size: 30px;
     padding: 10%;
 }
@@ -291,6 +291,12 @@ main {
     background: rgb(241, 153, 153);
     color: rgb(184, 12, 12);
     border-color: rgb(184, 12, 12);
+}
+
+.quiz-box .option.skip {
+    background: rgb(124, 164, 238);
+    color: rgb(68, 128, 240);
+    border-color: rgb(31, 80, 170);
 }
 
 /* .quiz-box .option:hover{
