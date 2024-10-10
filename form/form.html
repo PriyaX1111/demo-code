@@ -1,33 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="form.css">
 </head>
+
 <body>
     <form onsubmit="takeVale()" class="form">
-        <h1>registration form</h1>
-        <input type="text" name="Name" placeholder="Your name" id="name"><br><br>
-        <input type="text" name="Qualification" placeholder="Your Qualification" id="qualification"><br><br>
-        <input type="number" name="Mobile" placeholder="Your Mobile Number" id="mobile"><br><br>
-        <input type="email" name="Email" placeholder="Your Email" id="email"><br><br>
-        <input type="password" name="password" placeholder="Your password" id="name"><br><br>
-        <input type="submit" value="signup" class="submit">
+        <h1>Registration Form</h1>
+        <input type="text" name="Name" placeholder="Your name" id="name" required><br><br>
+        <input type="text" name="Experience" placeholder="Years of Experience" id="Experience" required><br><br>
+        <input type="text" name="Qualification" placeholder="Your Qualification" id="qualification" required><br><br>
+        <input type="number" name="Mobile" placeholder="Your Mobile Number" id="mobile" required><br><br>
+        <input type="email" name="Email" placeholder="Your Email" id="email" required><br><br>
+        <!-- <input type="password" name="password" placeholder="Your password" id="name"><br><br> -->
+        <input type="submit" value="signup" class="submit" id="loadScriptButton">
     </form>
     <script>
         // function signup(){
 
         // }
-        function takeVale(){
+        function takeVale() {
             var name = document.getElementById("name").value;
             var mobile = document.getElementById("mobile").value;
             var qualification = document.getElementById("qualification").value;
-            document.write(name + "<br>");
-            document.write(mobile + "<br>");
-            document.write(qualification + "<br>");
+            var email = document.getElementById("email").value;
+            var Experience = document.getElementById("Experience").value;
+            document.write(`
+                <style>
+                    .preview-title {
+                        color: #1680AC;
+                        font-size: 33px;
+                        font-weight: bold;
+                        text-align: center;
+                        margin-top:80px;
+                        margin: 50px 150px;
+                    }
+                </style>
+                <div class="preview-title">Here are details which you have submitted preview and play</div>
+                <br>
+            `);
+
+            document.write(`
+                <style>
+                     body {
+                         background-color: #000000;
+                        margin: 0; 
+                        font-family: Arial, sans-serif;
+                    }
+                    .info {
+                        color: white;
+                        font-size: 22px;
+                        text-align: center;
+                        padding: 10px;
+                        margin: 0px 0;
+                        font-family: Arial, sans-serif;
+                        }
+                        a{
+                            text-decoration: none; 
+                        }
+                    .my-button {
+                            background-color: #1680AC; /* Green background */
+                            color: white; 
+                            border: none; 
+                            padding: 15px 30px; /* Responsive padding */
+                            font-size: 1.5em; /* Responsive font size */
+                            cursor: pointer; 
+                            border-radius: 5px; 
+                            display: block; 
+                            margin: 20px auto;
+                            transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+                            }
+                    .my-button:hover {
+                                background-color: #1680AB; /* Darker green on hover */
+                                transform: scale(1.05); /* Slight scale effect on hover */
+                            }
+
+                            @media (max-width: 600px) {
+                            .preview-title{
+                            font-size: 22px;
+                            margin-top:80px;
+                            margin: 50px 10px;
+                            }
+                    .info {
+                                font-size: 5vw; 
+                    .my-button {
+                                font-size: 4vw; /* Larger button font size for smaller screens */
+                                padding: 0.8em 1.5em; /* Adjust padding */
+                            }
+                        }
+                </style>
+                <div class="info"> Name  :  ${name}</div>
+                <div class="info"> Number :  ${mobile}</div>
+                <div class="info"> Education :  ${qualification}</div>
+                <div class="info"> Email :  ${email}</div>
+                <div class="info"> Experience :  ${Experience}</div>
+                <a href="../interviewQuiz/InterviewQuiz.html"><button class="my-button" id="SwitchPageButton">Play Game</button></a>
+                `);
+
+            const userInfo = {
+                name: name,
+                mobile: mobile,
+                qualification: qualification,
+                email: email,
+                experience: Experience,
+            };
+
+            // Store the object in local storage
+            localStorage.setItem('userInfo', JSON.stringify(userInfo));
+
+            // Optional: Retrieve and log the stored data (for debugging purposes)
+            const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
+            console.log(storedInfo);
         }
-    </script>    
+    </script>
 </body>
+
 </html>

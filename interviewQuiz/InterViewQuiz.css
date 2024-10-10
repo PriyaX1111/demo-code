@@ -32,17 +32,20 @@ aside {
     position: sticky;
     grid-area: sidebar;
     background-color: #333;
-    color: rgb(228, 231, 53);
+    color: rgb(255, 255, 255);
     padding: 10%;
     text-align: center;
 }
 
 .row button {
+    /* font-size: 18px; */
     font-size: 18px;
-    font-size: min(15px);
+    border: 2px solid rgb(255, 255, 255);
     border-radius: 5px;
     margin: 20px 20px;
-    padding: 12px 25px;
+    padding: 12px 55px;
+    background: #000000;
+    color: #fff;
 }
 
 main {
@@ -62,6 +65,9 @@ main {
         width: 300px;
         /* background-color: 0000003e; */
         display: none;
+        max-height: calc(100vh); 
+        overflow-y: auto;
+        overflow-x: hidden; 
     }
 
     nav {
@@ -132,12 +138,12 @@ main {
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2);
 }
 
-.timer {
+.timerr {
     display: flex;
     justify-content: space-around;
     width: 202px;
     align-items: center;
-    background: #e1f5de;
+    background: #e4f8ec;
     /* width: 100px; */
     border: 2px solid #e4f8ec;
     border-radius: 40px;
@@ -153,7 +159,7 @@ main {
     left: 0;
     /* width: 50%; */
     height: 6px;
-    background: #b7ffac;
+    background: #e4f8ec;
     margin-top: 50px;
     margin-bottom: 10px;
 }
@@ -387,7 +393,7 @@ main {
     padding: 40px;
 }
 
-.result-box h3 {
+.result-box h3{
     font-size: 30px;
     font-size: max(25px);
     margin-bottom: 10px;

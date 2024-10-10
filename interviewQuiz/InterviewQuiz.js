@@ -28,20 +28,18 @@ const sidebar = document.getElementById('sidebar');
 //variable to shuffle question after click on again quiz
 let shuffledQuestion, currentQuestionIndex
 //variable for timer 
-const timeCount = document.querySelector(".timer .time_minute")
+// const timeCount = document.querySelector(".timer .time_minute")
 // const for audio
 const RightAudio = new Audio();
 RightAudio.src = "../audio/correctAudio.mp3"
 const WrongAudio = new Audio();
 WrongAudio.src = "../audio/wrongAudio.mp3"
-
-
 // js code to display form details
 
 //js code to toggleSidebar
 function toggleSidebar() {
     sidebar.classList.toggle('show')
-    reset();
+    aside.scrollTop = aside.scrollHeight;
 }
 
 //code for window visibilities
@@ -88,7 +86,7 @@ window.onpopstate = function () { history.go(1); };
 start_btn.onclick = () => {
     quiz_box.classList.remove("inactive");
     start_btn.classList.add("inactive");
-    startTimer(60); // calling start timer
+    startTimer(); // calling start timer
 }
 
 var que_index = 0;
@@ -112,14 +110,6 @@ function ShowQuestion(q_index) {
     listItem.textContent = `${questions[q_index].num}`;
     listItem.id = `${questions[q_index].num}`;
 
-    // console.log(questions[q_index].num)
-    // listItem.onclick = () => {alert(`${ShowQuestion}`);}
-    if (UserAnswer == skipAns) {
-        listItem.style.backgroundColor = "green";
-        AllOptions2[j].classList.add("disabled");
-    }
-
-
     row.appendChild(listItem);
     listItem.onclick = () => {
         for (var q = 0; q < questions.length; q++) {
@@ -130,13 +120,16 @@ function ShowQuestion(q_index) {
                 for (var j = 0; j < AllOptions.length; j++) {
                     AllOptions[j].setAttribute("onclick", "UserAnswer(this)");
                 }
+                for (var j = 0; j < AllOptions2.length; j++) {
+                    AllOptions2[j].classList.add("disabled");
+                }
             }
             else {
                 console.log('question not available')
             }
-
         }
     }
+
     //loop to display question in question box     
     var option_statement = "";
     for (var i = 0; i < questions[que_index].options.length; i++) {
@@ -154,20 +147,30 @@ function ShowQuestion(q_index) {
 }
 
 //javascript code for timer
+// let countdown;
+//         let totalTime = 2; // Set your timer duration in minutes
 
-function startTimer(time) {
-    counter = setInterval(timer, 1000)
-    function timer() {
-        timeCount.textContent = time + " minutes";
-        time--;
-        if (time < 9) {
-            timeCount.textContent = "0" + timeCount.textContent
-        }
-        if (time < 0) {
-            clearInterval(counter);
-        }
-    }
-}
+//         function startTimer() {
+//             let timeLeft = totalTime * 60; // Convert minutes to seconds
+//             clearInterval(countdown); // Clear any existing timers
+
+//             countdown = setInterval(() => {
+//                 const minutes = Math.floor(timeLeft / 60);
+//                 const seconds = timeLeft % 60;
+
+//                 document.getElementById('timer').textContent = 
+//                     `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+//                 if (timeLeft <= 0) {
+//                     clearInterval(countdown);
+//                     alert("Time's up!");
+//                 }
+
+//                 timeLeft--;
+//             }, 1000);
+//         }
+
+//         document.getElementById('startTimer').addEventListener('click', startTimer);
 
 //onclick event for skip function
 skip_btn.onclick = () => {
@@ -175,6 +178,7 @@ skip_btn.onclick = () => {
     if (questions.length > que_index) {
         count_ques.innerText = que_index + 1;
         ShowQuestion(que_index);
+        skipAns++;
     }
 
     else {
@@ -186,6 +190,7 @@ skip_btn.onclick = () => {
         wrong_ans_r.innerText = wrong_answers;
         skip_ans_r.innerText = skipAns;
         percentage.innerText = ((right_answers * 100) / questions.length).toFixed(2) + "%"; //percentage formula
+        document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
     }
 
 }
@@ -195,7 +200,7 @@ next_btn.onclick = () => {
     que_index++;
     if (questions.length > que_index) {
         count_ques.innerText = que_index + 1;
-        shuffledQuestion = questions.sort(() => Math.random() - .5);
+        // shuffledQuestion = questions.sort(() => Math.random() - .5);
         ShowQuestion(que_index);
     } else {
         console.log("exam complete")
@@ -220,7 +225,7 @@ next_btn.onclick = () => {
 //javascrip to get users answer and give the feeds if it is correct of wrong with color and correct answer
 function UserAnswer(answer) {
     let UserAns = answer.innerText;
-    let skipAns = 1;
+    // let skipAns = 1;
     let correctAns = questions[que_index].answer;
     var AllOptions2 = options_box.querySelectorAll(".option");
     // let WrongAnsArr = []; //array to store wrong answered questions
@@ -230,17 +235,16 @@ function UserAnswer(answer) {
 
     if (UserAns == correctAns) {
         console.log("%c Right Answer", "color:green");
-        // answer.classList.add("correct");
-        answer.classList.add("skip");
-
+        answer.classList.add("correct");
+        // answer.classList.add("skip");
         right_answers++;
         RightAudio.play();
     }
 
     else {
         console.log("%c Wrong Answer", "color:red");
-        // answer.classList.add("incorrect");
-        answer.classList.add("skip");
+        answer.classList.add("incorrect");
+        // answer.classList.add("skip");
         wrong_answers++;
         WrongAudio.play();
 
@@ -248,7 +252,7 @@ function UserAnswer(answer) {
             return UserAns != correctAns;
         });
 
-    if (UserAns == skipAns) {
+        if (UserAns == skipAns) {
             console.log("%c skip Answer", "color:red");
             answer.classList.add("skip");
             skipAns++;
@@ -298,3 +302,123 @@ function reset() {
     ShowQuestion(que_index);
     ShowQuestion(shuffledQuestion[que_index]);
 }
+
+
+// Function to display the user's selected answer and the correct answer
+function displaySelectedAndCorrectAnswer(userAnswer, correctAnswer) {
+    const answerDisplay = document.createElement('div');
+    answerDisplay.classList.add('answer-display');
+
+    // Constructing the message
+    answerDisplay.innerHTML = `
+        <p><strong>Your Answer:</strong> <span style="color: ${userAnswer === correctAnswer ? 'green' : 'red'};">${userAnswer}</span></p>
+        <p><strong>Correct Answer:</strong> <span style="color: green;">${correctAnswer}</span></p>
+    `;
+
+    // Append to the quiz box or a designated area
+    quiz_box.appendChild(answerDisplay);
+
+    // Remove the display after a few seconds (optional)
+    setTimeout(() => {
+        answerDisplay.remove();
+    }, 3000);
+}
+
+// Updated UserAnswer function to include the new display functionality
+function UserAnswer(answer) {
+    let UserAns = answer.innerText;
+    let correctAns = questions[que_index].answer;
+    var AllOptions2 = options_box.querySelectorAll(".option");
+
+    next_btn.classList.remove("inactive");
+
+    // Check if the answer is correct or incorrect
+    if (UserAns === correctAns) {
+        console.log("%c Right Answer", "color:green");
+        answer.classList.add("correct");
+        right_answers++;
+        RightAudio.play();
+    } else {
+        console.log("%c Wrong Answer", "color:red");
+        answer.classList.add("incorrect");
+        wrong_answers++;
+        WrongAudio.play();
+    }
+
+    // Call the function to display answers
+    displaySelectedAndCorrectAnswer(UserAns, correctAns);
+
+    // Disable other options after one is selected
+    for (var j = 0; j < AllOptions2.length; j++) {
+        AllOptions2[j].classList.add("disabled");
+    }
+
+    // Highlight the correct answer
+    for (var i = 0; i < AllOptions2.length; i++) {
+        if (AllOptions2[i].innerText === correctAns) {
+            AllOptions2[i].classList.add("correct");
+        }
+    }
+}
+
+// Set the countdown time for 45 minutes (in seconds)
+let countdownTime = 45 * 60; // 45 minutes = 2700 seconds
+
+// Function to format time in MM:SS
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')+' minutes'}`;
+}
+
+// Function to start the countdown
+function startCountdown() {
+    const timerElement = document.getElementById('timer');
+
+    const interval = setInterval(() => {
+        if (countdownTime <= 0) {
+            clearInterval(interval);
+            // timerElement.innerHTML = "Time's up!";
+            clearInterval(interval);
+            timerElement.innerHTML = "Time's up!";
+            // Automatically submit the quiz
+            console.log("exam complete")
+            quiz_box.classList.add("inactive");
+            result_box.classList.remove("inactive");
+            right_ans_r.innerText = right_answers;
+            wrong_ans_r.innerText = wrong_answers;
+            skip_ans_r.innerText = skipAns;
+            percentage.innerText = ((right_answers * 100) / questions.length).toFixed(2) + "%";
+            // submitButton.click(); /
+        } else {
+            timerElement.innerHTML = `${formatTime(countdownTime)}`;
+            countdownTime--;
+        }
+    }, 1000);
+}
+
+// Start the countdown when the page loads
+window.onload = startCountdown;
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Retrieve the quiz results from local storage
+    const quizResults = JSON.parse(localStorage.getItem('quizResults'));
+
+    // Check if data exists
+    if (quizResults) {
+        // Display the results in the appropriate spans
+        document.querySelector('.info:nth-of-type(1)').textContent = `Name: ${storedInfo.name}`;
+        // Optionally display additional information in the info div
+        const infoDiv = document.getElementById('info');
+        infoDiv.textContent = `You completed the quiz!`;
+    } else {
+        console.log("No quiz results found in local storage.");
+    }
+});
+
+
+
+    const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
+    console.log(storedInfo);

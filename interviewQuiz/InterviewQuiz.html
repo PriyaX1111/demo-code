@@ -12,25 +12,31 @@
 <body style="background-color: black;">
     <nav><button id="navbarBtn" onclick="toggleSidebar();">Show</button></nav>
     <aside id="sidebar">
-        <h1>Question Map</h1>
+        <h1 style="font-size: 20px;">Question Map</h1>
         <ul class="row">
             <!-- <li></li> -->
         </ul>
     </aside>
-    <div class="start_quiz">Start Quiz</div>
-    <div class="login inactive">
+    <div id="startTimer" class="start_quiz">Start Quiz</div>
+    <!-- <div class="login inactive">
         <a href="login/login.html"></a>
-    </div>
+    </div> -->
     <main>
         <div class="quiz-box inactive">
+            <h1 style="padding-bottom: 15px; text-align: center; font-size: 36px; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
+           padding: 10px 0;">Smt. Paarvati Devi Hospital</h1>
+            <!-- <h1 style="padding-bottom: 15px; text-align: center;">SMT. Paarvati Devi Hospital</h1> -->
             <h1 style="padding-bottom: 15px; text-align: center;">Interview Quiz</h1>
             <div class="Time">
                 <div class="Iocn-flag">
                     <i class="fa-solid fa-flag"></i>
                 </div>
-                <div class="timer">
+                <div class="timerr">
                     <div style="font-size: x-large;"><i class="fa-solid fa-clock"></i></div>
-                    <div class="time_minute">45<span class="time_sec">:00 minutes</span> </div>
+                    <!-- <div class="time_minute">45<span class="time_sec">:00 minutes</span> </div> -->
+                    <div id="timer" style="text-align: center; font-size: 15px; padding: 11px;"></div>
+
                 </div>
                 <div class="time_line"></div>
             </div>
@@ -68,12 +74,15 @@
         <div class="result-box inactive">
             <h2>Result</h2>
             <div class="result">
+                <h3 class="storedInfo"> Name  : priya </h3>
+                <h3 class="info"> Education :  phd</h3>
+                <h3 class="info"> Number :  981598989</h3>
                 <h3 class="total-ques">Total Questions : <span></span></h3>
                 <h3 class="right-ans">Right Answer : <span></span></h3>
                 <h3 class="wrong-ans">Wrong Answer : <span></span></h3>
+                <h3 class="percentage">Percentage : <span></span></h3>
                 <h3 class="skip-ans">Skip Answer : <span></span></h3>
-                <h3 class="percentage">percentage : <span></span></h3>
-                <div id="info"></div>
+                <!-- <div id="info"></div> -->
             </div>
             <div class="result-footer">
                 <div class="again-quiz">Again Quiz</div>

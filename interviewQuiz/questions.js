@@ -1,7 +1,7 @@
 var questions = [
     {
         num: 1,
-        question: "Which of the following blood test should be perform before a blood tranfusion?",
+        question: "Which of the following blood tests should be performed before a blood transfusion?",
         answer: "Blood type and cross matching",
         options: [
             'PTI',
@@ -12,17 +12,17 @@ var questions = [
     },
     {
         num: 2,
-        question: "The Standard fifth vital sign is.",
+        question: "The standard fifth vital sign is.",
         answer: "Pain",
         options: [
             'Pain',
             'Blood Pressure',
-            'Pulse Oxymetry',
+            'Pulse oximetry',
         ],
     },
     {
         num: 3,
-        question: "Sterile technique is used whenever",
+        question: "Sterile technique is used whenever?",
         answer: "Invasive procedure performed",
         options: [
             'Invasive procedure performed',
@@ -32,7 +32,7 @@ var questions = [
     },
     {
         num: 4,
-        question: "What is the most accurate way to measure cort temperature?",
+        question: "What is the most accurate way to measure core temperature?",
         answer: "Rectally",
         options: [
             'Otic',
@@ -42,7 +42,7 @@ var questions = [
     },
     {
         num: 5,
-        question: "Normal Internal Body temperature is.",
+        question: "Normal internal body temperature is.",
         answer: "98.6°F (37°C)",
         options: [
             '98.6°F (37°C)',
@@ -52,7 +52,7 @@ var questions = [
     },
     {
         num: 6,
-        question: "What are the Korotkoff Sounds",
+        question: "What are the Korotkoff sounds?",
         answer: "Sounds heard while measuring blood pressure",
         options: [
             'Sounds heard while measuring blood pressure',
@@ -62,7 +62,7 @@ var questions = [
     },
     {
         num: 7,
-        question: "All of the following are good source of Vitamin A except?",
+        question: "All of the following are good sources of vitamin A except?",
         answer: "White Potatoes",
         options: [
             'Eggs yolks',
@@ -73,29 +73,29 @@ var questions = [
     },
     {
         num: 8,
-        question: "Which of the following is not a sign & symptom of respiratory distress?",
-        answer: "Adoptions of a supine position by a patien",
+        question: "Which of the following is not a sign or symptom of respiratory distress?",
+        answer: "Adoption of a supine position by a patient",
         options: [
-            'Adoptions of a supine position by a patien',
+            'Adoption of a supine position by a patient',
             'Nail bed cyanosis',
             'An expiratory grunt in children',
-            'Breating through pursed lips',
+            'Breathing through pursed lips',
         ],
     },
     {
         num: 9,
-        question: "Treatment of delirium tremers is",
+        question: "Treatment of delirium tremens is?",
         answer: "Diazepam",
         options: [
-            'Promethzine',
+            'Promethazine',
             'Diazepam',
-            'Chlodixeproxide',
-            'Respridom',
+            'Chlordiazepoxide',
+            'Risperidone',
         ],
     },
     {
         num: 10,
-        question: "What is compression ventilation radio during CPR ?",
+        question: "What is compression ventilation ratio during CPR?",
         answer: "30:2",
         options: [
             '30:2',
@@ -116,7 +116,7 @@ var questions = [
     },
     {
         num: 12,
-        question: "The order is to infuse 1,000 ml of 0.9% salin over 8 hours how mush ml/hour to infuse",
+        question: "The order is to infuse 1,000 ml of 0.9% saline over 8 hours how much ml/hour to infuse",
         answer: "125 ml/ hour",
         options: [
             '120 ml/hour',
