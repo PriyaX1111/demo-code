@@ -23,7 +23,7 @@ nav {
     position: sticky;
     align-self: start;
     grid-area: navbar;
-    background-color: #ffffff;
+    background-color:rgba(29, 28, 28, 0.5);
     color: rgb(255, 0, 0);
     padding: 1em;
 }
@@ -31,14 +31,13 @@ nav {
 aside {
     position: sticky;
     grid-area: sidebar;
-    background-color: #333;
+    background-color: rgba(29, 28, 28, 0.5);
     color: rgb(255, 255, 255);
     padding: 10%;
     text-align: center;
 }
 
 .row button {
-    /* font-size: 18px; */
     font-size: 18px;
     border: 2px solid rgb(255, 255, 255);
     border-radius: 5px;
@@ -59,8 +58,8 @@ main {
 
     aside {
         z-index: 2;
-        height: calc(100vh - 72px);
-        top: 72px;
+        height: calc(100vh - 57px);
+        top: 57px;
         position: fixed;
         width: 300px;
         /* background-color: 0000003e; */
@@ -87,12 +86,12 @@ main {
 
 #navbarBtn {
     font-size: x-large;
-    padding: 4px 44px;
-    background-color: rgba(0, 0, 0, 0.5);
+    /* padding: 4px 44px; */
+    /* background-color: rgba(0, 0, 0, 0.5); */
     color: #ffffff;
-    border: 2px solid #000000;
-    border-radius: 11px;
-    box-shadow: 0px 0px 20px rgb(255, 255, 255);
+    /* border: 2px solid rgba(0, 0, 0, 0.5); */
+    /* border-radius: 11px; */
+    /* box-shadow: 0px 0px 20px rgb(255, 255, 255); */
 }
 
 .start_quiz {

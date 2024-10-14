@@ -37,9 +37,16 @@ WrongAudio.src = "../audio/wrongAudio.mp3"
 // js code to display form details
 
 //js code to toggleSidebar
+const aside = document.getElementById('.aside')
+const toggle_btn = document.getElementById('.toggle-btn')
+function toggleSidebarMenu (){
+    toggle_btn.classList.toggle('close')
+    aside.classList.toggle('rotate')
+}
+
 function toggleSidebar() {
     sidebar.classList.toggle('show')
-    aside.scrollTop = aside.scrollHeight;
+    // aside.scrollTop = aside.scrollHeight; 
 }
 
 //code for window visibilities
@@ -146,31 +153,6 @@ function ShowQuestion(q_index) {
     skip_btn.classList.remove("inactive");
 }
 
-//javascript code for timer
-// let countdown;
-//         let totalTime = 2; // Set your timer duration in minutes
-
-//         function startTimer() {
-//             let timeLeft = totalTime * 60; // Convert minutes to seconds
-//             clearInterval(countdown); // Clear any existing timers
-
-//             countdown = setInterval(() => {
-//                 const minutes = Math.floor(timeLeft / 60);
-//                 const seconds = timeLeft % 60;
-
-//                 document.getElementById('timer').textContent = 
-//                     `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-//                 if (timeLeft <= 0) {
-//                     clearInterval(countdown);
-//                     alert("Time's up!");
-//                 }
-
-//                 timeLeft--;
-//             }, 1000);
-//         }
-
-//         document.getElementById('startTimer').addEventListener('click', startTimer);
 
 //onclick event for skip function
 skip_btn.onclick = () => {
@@ -399,9 +381,6 @@ function startCountdown() {
 
 // Start the countdown when the page loads
 window.onload = startCountdown;
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
     // Retrieve the quiz results from local storage
     const quizResults = JSON.parse(localStorage.getItem('quizResults'));

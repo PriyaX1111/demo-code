@@ -10,12 +10,25 @@
 </head>
 
 <body style="background-color: black;">
-    <nav><button id="navbarBtn" onclick="toggleSidebar();">Show</button></nav>
+    <nav>
+        <!-- <button id="navbarBtn" onclick="toggleSidebar();">
+            <i class="fa-solid fa-angles-right" style="color: aliceblue;"></i>
+        </button> -->
+
+        <i class="fa-solid fa-angles-right" style="color: aliceblue;" onclick="toggleSidebar();" id="navbarBtn"></i>
+    </nav>
     <aside id="sidebar">
-        <h1 style="font-size: 20px;">Question Map</h1>
-        <ul class="row">
-            <!-- <li></li> -->
-        </ul>
+        <div>
+            <h1 style="font-size: 20px;">Question Map</h1>
+        </div>
+        <!-- <div class="DoubleArrow" style="display: flex;"> -->
+        <!-- </div> -->
+        <div class="margin-top: 10%;">
+            <div class="" style="margin-top: 10%;">
+                <ul class="row">
+                    <!-- <li></li> -->
+                </ul>
+            </div>
     </aside>
     <div id="startTimer" class="start_quiz">Start Quiz</div>
     <!-- <div class="login inactive">
@@ -74,9 +87,9 @@
         <div class="result-box inactive">
             <h2>Result</h2>
             <div class="result">
-                <h3 class="storedInfo"> Name  : priya </h3>
-                <h3 class="info"> Education :  phd</h3>
-                <h3 class="info"> Number :  981598989</h3>
+                <h3 class="storedInfo"> Name : priya </h3>
+                <h3 class="info"> Education : phd</h3>
+                <h3 class="info"> Number : 981598989</h3>
                 <h3 class="total-ques">Total Questions : <span></span></h3>
                 <h3 class="right-ans">Right Answer : <span></span></h3>
                 <h3 class="wrong-ans">Wrong Answer : <span></span></h3>
