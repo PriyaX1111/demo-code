@@ -36,6 +36,28 @@ const timeCount = document.querySelector(".timer .time_minute")
 // WrongAudio.src = "../audio/wrongAudio.mp3"
 
 
+// Prevent F5 and Ctrl+R
+document.addEventListener("keydown", function(event) {
+    // F5 key
+    if (event.key === "F5") {
+        event.preventDefault();
+    }
+    // Ctrl+R or Command+R on Mac
+    if ((event.ctrlKey || event.metaKey) && event.key === "r") {
+        event.preventDefault();
+    }
+});
+
+// Warn users before they leave the page
+window.addEventListener("beforeunload", function(event) {
+    // Customize the message as needed
+    const confirmationMessage = "You have unsaved changes. Are you sure you want to leave?";
+    event.returnValue = confirmationMessage; // This line is required for most browsers
+    return confirmationMessage; // Some browsers will show this message
+});
+
+
+
 // js code to display form details
 
 //js code to toggleSidebar
@@ -54,7 +76,6 @@ document.addEventListener('visibilitychange', function () {
         warning.classList.remove('inactive')
         quiz_box.classList.add("inactive");
         start_btn.classList.add("inactive");
-
         // document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
     }
 })
@@ -77,11 +98,11 @@ function validateOtp() {
     }
 }
 
-// // code to disable refresh button
-// history.pushState(null, document.title, location.href);
-// history.back();
-// history.forward();
-// window.onpopstate = function () { history.go(1); };
+// code to disable refresh button
+history.pushState(null, document.title, location.href);
+history.back();
+history.forward();
+window.onpopstate = function () { history.go(1); };
 
 //start btn onclick event
 start_btn.onclick = () => {
@@ -165,6 +186,16 @@ function ShowQuestion(q_index) {
     skip_btn.classList.remove("inactive");
 }
 
+
+// Function to change the sidebar button color to purple
+function changeSidebarButtonColor(index) {
+    const button = document.getElementById(`question-${index}`);
+    if (button) {
+        button.style.backgroundColor = 'purple';
+        button.style.color = 'white'; // Optional: Change text color for better visibility
+    }
+}
+
 // Array to hold user answers and correct answers and question as objects
 let answers = [];
 // User answer handling function
@@ -183,6 +214,9 @@ function UserAnswer(answer) {
         userAnswer: UserAns,
         correctAnswer: correctAns
     };
+
+    // Change the sidebar button color after answering
+    changeSidebarButtonColor(que_index); // Pass the current question index
 
     if (UserAns == correctAns) {
         console.log("%c Right Answer", "color:green");
