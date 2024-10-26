@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 </head>
 
-<body style="background-color: black;">
+<body >
     <nav>
         <!-- <button id="navbarBtn" onclick="toggleSidebar();">
             <i class="fa-solid fa-angles-right" style="color: aliceblue;"></i>
@@ -30,11 +30,13 @@
                 </ul>
             </div>
     </aside>
+        
     <div id="startTimer" class="start_quiz">Start Quiz</div>
     <!-- <div class="login inactive">
-        <a href="login/login.html"></a>
-    </div> -->
+                <a href="login/login.html"></a>
+            </div> -->
     <main>
+        
         <!-- <button id="toggleButton">Toggle Sidebar</button> -->
         <div class="quiz-box inactive">
             <h1 style="padding-bottom: 15px; text-align: center; font-size: 36px; 
@@ -77,7 +79,7 @@
                 <div>Warning</div>
                 <div>The tab has been closed since you switched to another tab</div>
                 <div>Talk to your mentor to re-open the tab</div>
-            </div>            
+            </div>
             <div class="otp_container">
                 <h5>Verify OTP</h5>
                 <button onclick="generateOTP()">Generate OTP</button>
@@ -89,14 +91,13 @@
         <div class="result-box inactive">
             <h2>Result</h2>
             <div class="result">
-                <h3 class="storedInfo"> Name : priya </h3>
-                <h3 class="info"> Education : phd</h3>
-                <h3 class="info"> Number : 981598989</h3>
+                <div class="user-info-display"></div>
                 <h3 class="total-ques">Total Questions : <span></span></h3>
                 <h3 class="right-ans">Right Answer : <span></span></h3>
                 <h3 class="wrong-ans">Wrong Answer : <span></span></h3>
                 <h3 class="percentage">Percentage : <span></span></h3>
                 <h3 class="skip-ans">Skip Answer : <span></span></h3>
+                <h3 class="final-score">Final Score: <span class="final-score-value">0.00</span></h3>
                 <!-- <div id="info"></div> -->
             </div>
             <div class="result-footer">
@@ -106,6 +107,7 @@
                 <div class="exit">Exit</div>
             </div>
         </div>
+        
         <div class="modal inactive">
             <div class="modal-content">
                 <span class="close">&times;</span>

@@ -60,10 +60,26 @@ window.addEventListener("beforeunload", function(event) {
 
 // js code to display form details
 
-//js code to toggleSidebar
-function toggleSidebar() {
-    sidebar.classList.toggle('show')
-}
+const navbarBtn = document.getElementById("navbarBtn");
+// const sidebar = document.getElementById("sidebar");
+
+// Set the initial state of the sidebar
+sidebar.style.display = "none"; // Initially hide the sidebar
+
+// Store original margin
+const originalMargin = navbarBtn.style.marginLeft || "0px";
+
+navbarBtn.addEventListener("click", function() {
+    if (sidebar.style.display === "none" || sidebar.style.display === "") {
+        sidebar.style.display = "block"; // Show sidebar
+        navbarBtn.style.marginLeft = "250px"; // Set left margin to 250px
+    } else {
+        sidebar.style.display = "none"; // Hide sidebar
+        navbarBtn.style.marginLeft = originalMargin; // Reset left margin
+    }
+});   
+
+// }
 
 //code for window visibilities
 let counter = 0
@@ -118,24 +134,29 @@ var skipAns = 0;
 count_ques.innerHTML = que_index + 1;
 
 
+// Prompt user for experience level
+let userExperienceLevel = prompt("Enter your experience level (fresher, below 1 year, 1 year, more than 1 year):").toLowerCase();
+
+// Filter questions based on new experience levels
+function filterQuestionsByExperience(experienceLevel) {
+    return questions.filter(question => question.experienceLevel === experienceLevel);
+}
+
+// Shuffle function
 function shuffleArray(originalArray) {
-    // Create a copy of the original array
     const questions = [...originalArray];
     const shuffledArray = [];
 
     while (questions.length > 0) {
-        // Generate a random index
         const randomIndex = Math.floor(Math.random() * questions.length);
-
-        // Remove the element at the random index and add it to the shuffled array
         shuffledArray.push(questions.splice(randomIndex, 1)[0]);
     }
     return shuffledArray;
 }
-// Example usage:
-// const questions = [];
-const shuffled = shuffleArray(questions);
-console.log(shuffled);
+
+// Filter and shuffle questions
+const filteredQuestions = filterQuestionsByExperience(userExperienceLevel);
+const shuffled = shuffleArray(filteredQuestions);
 
 // Function to create sidebar buttons for each question
 function createSidebarButtons() {
@@ -143,7 +164,6 @@ function createSidebarButtons() {
         const listItem = document.createElement('button');
         listItem.textContent = `Question ${index + 1}`;
         listItem.id = `question-${index}`; // Store the index in the ID
-
         // Set onclick event to show the question when clicked
         listItem.onclick = () => {
             que_index = index; // Update the current question index
@@ -155,7 +175,7 @@ function createSidebarButtons() {
 }
 
 // Call this function to create the sidebar buttons
-createSidebarButtons();
+createSidebarButtons();   
 
 ShowQuestion(que_index);
 //function to show question in loop
@@ -165,10 +185,7 @@ function ShowQuestion(q_index) {
 
     // ques_text.innerText = shuffled[q_index].num + ". " + shuffled[q_index].question;
     ques_text.innerText = shuffled[q_index].question;
-
-
-
-
+    
     //loop to display question in question box     
     var option_statement = "";
 
@@ -187,7 +204,7 @@ function ShowQuestion(q_index) {
 }
 
 
-// Function to change the sidebar button color to purple
+// Function to change the sidebar button color to green
 function changeSidebarButtonColor(index) {
     const button = document.getElementById(`question-${index}`);
     if (button) {
@@ -198,6 +215,8 @@ function changeSidebarButtonColor(index) {
 
 // Array to hold user answers and correct answers and question as objects
 let answers = [];
+// Define a variable to hold the score
+let score = 0;
 // User answer handling function
 function UserAnswer(answer) {
     let UserAns = answer.innerText;
@@ -222,11 +241,13 @@ function UserAnswer(answer) {
         console.log("%c Right Answer", "color:green");
         answer.classList.add("correct");
         right_answers++;
+        score++; // Increase score for a correct answer
         // RightAudio.play();
     } else {
         console.log("%c Wrong Answer", "color:red");
         answer.classList.add("incorrect");
         wrong_answers++;
+        score -= 0.5; // Deduct 0.5 points for an incorrect answer
         // WrongAudio.play();
 
         // Highlight the correct answer
@@ -242,6 +263,32 @@ function UserAnswer(answer) {
         AllOptions2[j].classList.add("disabled");
     }
     console.log("Answers:", answers);
+    console.log("Current Score:", score);
+}
+
+// Update the result display function to include the score
+function displayResults() {
+
+    // Retrieve user info from local storage
+    const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
+    
+    // Display user info in the result box
+    if (storedInfo) {
+        const userInfoDisplay = `
+            <p><strong>Name:</strong> ${storedInfo.name}</p>
+            <p><strong>Mobile:</strong> ${storedInfo.mobile}</p>
+            <p><strong>Qualification:</strong> ${storedInfo.qualification}</p>
+            <p><strong>Email:</strong> ${storedInfo.email}</p>
+            <p><strong>Experience:</strong> ${storedInfo.experience}</p>
+        `;
+        document.querySelector('.user-info-display').innerHTML = userInfoDisplay;
+    }
+    
+    right_ans_r.innerText = right_answers;
+    wrong_ans_r.innerText = wrong_answers;
+    skip_ans_r.innerText = skipAns;
+    percentage.innerText = ((right_answers * 100) / shuffled.length).toFixed(2) + "%"; // percentage formula
+    document.querySelector(".final-score-value").innerText = score.toFixed(2); // Display the final score
 }
 
 //onclick event for skip function
@@ -258,10 +305,11 @@ skip_btn.onclick = () => {
         warning.classList.add('inactive');
         quiz_box.classList.add("inactive");
         result_box.classList.remove("inactive");
-        right_ans_r.innerText = right_answers;
-        wrong_ans_r.innerText = wrong_answers;
-        skip_ans_r.innerText = skipAns;
-        percentage.innerText = ((right_answers * 100) / shuffled.length).toFixed(2) + "%"; //percentage formula
+        // right_ans_r.innerText = right_answers;
+        // wrong_ans_r.innerText = wrong_answers;
+        // skip_ans_r.innerText = skipAns;
+        // percentage.innerText = ((right_answers * 100) / shuffled.length).toFixed(2) + "%"; //percentage formula
+        displayResults();
     }
 
 }
@@ -277,10 +325,11 @@ next_btn.onclick = () => {
         console.log("exam complete")
         quiz_box.classList.add("inactive");
         result_box.classList.remove("inactive");
-        right_ans_r.innerText = right_answers;
-        wrong_ans_r.innerText = wrong_answers;
-        skip_ans_r.innerText = skipAns;
-        percentage.innerText = ((right_answers * 100) / shuffled.length).toFixed(2) + "%"; //percentage formula
+        // right_ans_r.innerText = right_answers;
+        // wrong_ans_r.innerText = wrong_answers;
+        // skip_ans_r.innerText = skipAns;
+        // percentage.innerText = ((right_answers * 100) / shuffled.length).toFixed(2) + "%"; //percentage formula
+        displayResults();
     }
 
     if (shuffled.length - 1 == que_index) {
@@ -292,73 +341,6 @@ next_btn.onclick = () => {
         document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized " + counter + " times"
     }
 }
-
-
-// // Array to hold user answers and correct answers and question as objects
-// let answers = [];
-//javascrip to get users answer and give the feeds if it is correct of wrong with color and correct answer
-// function UserAnswer(answer) {
-//     let UserAns = answer.innerText;
-//     // let skipAns = 1;
-//     let correctAns = shuffled[que_index].answer;
-//     var AllOptions2 = options_box.querySelectorAll(".option");
-//     let questionText = shuffled[que_index].question; // Get the current question text
-//     // let WrongAnsArr = []; //array to store wrong answered shuffled
-
-
-//     next_btn.classList.remove("inactive");
-
-//     // Store the user's answer and the correct answer and question in an object
-//     answers[que_index] = {
-//         question: questionText,
-//         userAnswer: UserAns,
-//         correctAnswer: correctAns
-//     };
-
-//     if (UserAns == correctAns) {
-//         console.log("%c Right Answer", "color:green");
-//         answer.classList.add("correct");
-//         // answer.classList.add("skip");
-//         right_answers++;
-//         // RightAudio.play();
-//     }
-
-//     else {
-//         console.log("%c Wrong Answer", "color:red");
-//         answer.classList.add("incorrect");
-//         // answer.classList.add("skip");
-//         wrong_answers++;
-//         // WrongAudio.play();
-
-//         shuffled = shuffled.filter(function (UserAns) {
-//             return UserAns != correctAns;
-//         });
-
-//         if (UserAns == skipAns) {
-//             // console.log("%c skip Answer", "color:red");
-//             answer.classList.add("skip");
-//             skipAns++;
-//         }
-//         // console.log(UserAns, shuffled[que_index]);
-//         // WrongAnsArr[que_index] = shuffled[que_index];
-//         // console.log(UserAns, WrongAnsArr[que_index]);
-//         // const quest = shuffled.push(WrongAnsArr[que_index]);
-//         for (var i = 0; i < AllOptions2.length; i++) {
-//             if (AllOptions2[i].innerText == correctAns) {
-//                 AllOptions2[i].classList.add("correct");
-//             }
-//         }
-//     }
-
-//     // javascript code to disable other options after one get selected
-//     for (var j = 0; j < AllOptions2.length; j++) {
-//         AllOptions2[j].classList.add("disabled");
-//     }
-//     // // Log the answers array to the console to display user's answer and the correct answer and question in an object
-//     console.log("Answers:", answers);
-
-// }
-
 
 // // Function to display answers
 function displayAnswers() {
@@ -478,20 +460,13 @@ function startCountdown() {
 window.onload = startCountdown;
 
 //to load content form local storage
-// document.addEventListener('DOMContentLoaded', () => {
-//     // Retrieve the quiz results from local storage
-//     const quizResults = JSON.parse(localStorage.getItem('quizResults'));
+const userInfo = {
+    name: name,
+    mobile: mobile,
+    qualification: qualification,
+    email: email,
+    experience: Experience,
+};
 
-//     // Check if data exists
-//     if (quizResults) {
-//         // Display the results in the appropriate spans
-//         document.querySelector('.info:nth-of-type(1)').textContent = `Name: ${storedInfo.name}`;
-//         // Optionally display additional information in the info div
-//         const infoDiv = document.getElementById('info');
-//         infoDiv.textContent = `You completed the quiz!`;
-//     } else {
-//         console.log("No quiz results found in local storage.");
-//     }
-// });
-// const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
-// console.log(storedInfo);
+// Store the object in local storage
+localStorage.setItem('userInfo', JSON.stringify(userInfo));
