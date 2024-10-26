@@ -36,6 +36,28 @@ const timeCount = document.querySelector(".timer .time_minute")
 // WrongAudio.src = "../audio/wrongAudio.mp3"
 
 
+// Prevent F5 and Ctrl+R
+document.addEventListener("keydown", function(event) {
+    // F5 key
+    if (event.key === "F5") {
+        event.preventDefault();
+    }
+    // Ctrl+R or Command+R on Mac
+    if ((event.ctrlKey || event.metaKey) && event.key === "r") {
+        event.preventDefault();
+    }
+});
+
+// Warn users before they leave the page
+window.addEventListener("beforeunload", function(event) {
+    // Customize the message as needed
+    const confirmationMessage = "You have unsaved changes. Are you sure you want to leave?";
+    event.returnValue = confirmationMessage; // This line is required for most browsers
+    return confirmationMessage; // Some browsers will show this message
+});
+
+
+
 // js code to display form details
 
 //js code to toggleSidebar
@@ -54,7 +76,6 @@ document.addEventListener('visibilitychange', function () {
         warning.classList.remove('inactive')
         quiz_box.classList.add("inactive");
         start_btn.classList.add("inactive");
-
         // document.getElementById('info').innerHTML = "The Browser Tab has been change or minimized "+ counter +" times"
     }
 })
@@ -77,11 +98,11 @@ function validateOtp() {
     }
 }
 
-// // code to disable refresh button
-// history.pushState(null, document.title, location.href);
-// history.back();
-// history.forward();
-// window.onpopstate = function () { history.go(1); };
+// code to disable refresh button
+history.pushState(null, document.title, location.href);
+history.back();
+history.forward();
+window.onpopstate = function () { history.go(1); };
 
 //start btn onclick event
 start_btn.onclick = () => {
@@ -116,6 +137,25 @@ function shuffleArray(originalArray) {
 const shuffled = shuffleArray(questions);
 console.log(shuffled);
 
+// Function to create sidebar buttons for each question
+function createSidebarButtons() {
+    shuffled.forEach((question, index) => {
+        const listItem = document.createElement('button');
+        listItem.textContent = `Question ${index + 1}`;
+        listItem.id = `question-${index}`; // Store the index in the ID
+
+        // Set onclick event to show the question when clicked
+        listItem.onclick = () => {
+            que_index = index; // Update the current question index
+            ShowQuestion(que_index); // Show the selected question
+        };
+
+        row.appendChild(listItem);
+    });
+}
+
+// Call this function to create the sidebar buttons
+createSidebarButtons();
 
 ShowQuestion(que_index);
 //function to show question in loop
@@ -127,25 +167,6 @@ function ShowQuestion(q_index) {
     ques_text.innerText = shuffled[q_index].question;
 
 
-    // Function to create sidebar buttons for each question
-    function createSidebarButtons() {
-        shuffled.forEach((question, index) => {
-            const listItem = document.createElement('button');
-            listItem.textContent = `${index + 1}`;
-            listItem.id = `question-${index}`; // Store the index in the ID
-
-            // Set onclick event to show the question when clicked
-            listItem.onclick = () => {
-                que_index = index; // Update the current question index
-                ShowQuestion(que_index); // Show the selected question
-            };
-
-            row.appendChild(listItem);
-        });
-    }
-
-    // Call this function to create the sidebar buttons
-    createSidebarButtons();
 
 
     //loop to display question in question box     
@@ -163,6 +184,16 @@ function ShowQuestion(q_index) {
     }
     next_btn.classList.add("inactive");
     skip_btn.classList.remove("inactive");
+}
+
+
+// Function to change the sidebar button color to purple
+function changeSidebarButtonColor(index) {
+    const button = document.getElementById(`question-${index}`);
+    if (button) {
+        button.style.backgroundColor = 'purple';
+        button.style.color = 'white'; // Optional: Change text color for better visibility
+    }
 }
 
 // Array to hold user answers and correct answers and question as objects
@@ -183,6 +214,9 @@ function UserAnswer(answer) {
         userAnswer: UserAns,
         correctAnswer: correctAns
     };
+
+    // Change the sidebar button color after answering
+    changeSidebarButtonColor(que_index); // Pass the current question index
 
     if (UserAns == correctAns) {
         console.log("%c Right Answer", "color:green");
@@ -459,5 +493,5 @@ window.onload = startCountdown;
 //         console.log("No quiz results found in local storage.");
 //     }
 // });
-const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
-console.log(storedInfo);
+// const storedInfo = JSON.parse(localStorage.getItem('userInfo'));
+// console.log(storedInfo);

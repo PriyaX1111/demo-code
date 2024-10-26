@@ -19,7 +19,7 @@
     </nav>
     <aside id="sidebar">
         <div>
-            <h1 style="font-size: 20px;">Question Map</h1>
+            <h1 class="QuestionBtn_Title">Question Map</h1>
         </div>
         <!-- <div class="DoubleArrow" style="display: flex;"> -->
         <!-- </div> -->
@@ -35,6 +35,7 @@
         <a href="login/login.html"></a>
     </div> -->
     <main>
+        <!-- <button id="toggleButton">Toggle Sidebar</button> -->
         <div class="quiz-box inactive">
             <h1 style="padding-bottom: 15px; text-align: center; font-size: 36px; 
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
@@ -71,18 +72,19 @@
                 </div>
             </div>
         </div>
-        <div class="warning inactive">
-            <h4>Warning</h4>
-            <h5>The tab has been close since you have change to another tab</h5>
-            <h6>Talk to your mentor to re-open the tab</h6>
+        <div class="warning inactive" role="alert" aria-live="assertive">
+            <div class="warning-section">
+                <div>Warning</div>
+                <div>The tab has been closed since you switched to another tab</div>
+                <div>Talk to your mentor to re-open the tab</div>
+            </div>            
             <div class="otp_container">
                 <h5>Verify OTP</h5>
                 <button onclick="generateOTP()">Generate OTP</button>
-                <label for="ValidOtp" style="font-size: 33px;">Enter the OTP</label>
+                <label for="validOtp" style="font-size: 33px; margin-top: 2%;">Enter the OTP</label>
                 <input type="number" id="validOtp" placeholder="Enter the OTP..." />
-                <button onclick="validateOtp()">validate OTP</button>
+                <button onclick="validateOtp()">Validate OTP</button>
             </div>
-
         </div>
         <div class="result-box inactive">
             <h2>Result</h2>
@@ -110,7 +112,7 @@
                 <div class="answers-display"></div>
             </div>
         </div>
-        
+
         <!-- <div class="popup inactive">
             <div class="popup-content">
                 <span class="close-popup">&times;</span>
@@ -119,7 +121,7 @@
             </div>
         </div> -->
         <!-- <div class="answer-block inactive"> -->
-            <!-- <p><strong>Question 1:</strong> What is the capital of France?</p>
+        <!-- <p><strong>Question 1:</strong> What is the capital of France?</p>
             <button class="toggle-button">Show Answers</button>
             <div class="answer-details inactive">
                 <p><strong>Your Answer:</strong> Paris</p>
@@ -134,7 +136,7 @@
                 <div class="answers-display"></div>
             </div>
         </div> -->
-        
+
         <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="js/include-html.min.js"></script> -->
         <script src="questions.js"></script>
