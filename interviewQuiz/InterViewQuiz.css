@@ -563,7 +563,7 @@ main {
 .toggle-answer {
     margin-top: 10px;
     padding: 5px 10px;
-    background-color: #007bff;
+    background-color: #007bff;     
     color: white;
     border: none;
     border-radius: 5px;
@@ -601,4 +601,44 @@ main {
     text-decoration: none;
     cursor: pointer;
 }
+
+.experience-form {
+    z-index: 100;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.experience-form h2 {
+    text-align: center;
+    color: #333;
+}
+label {
+    margin-top: 20px;
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+select, .experienceBtn {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.experienceBtn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.experienceBtn:hover {
+    background-color: #0056b3;
+}
+
 

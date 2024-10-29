@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 </head>
 
-<body >
+<body>
     <nav>
         <!-- <button id="navbarBtn" onclick="toggleSidebar();">
             <i class="fa-solid fa-angles-right" style="color: aliceblue;"></i>
@@ -36,6 +36,19 @@
                 <a href="login/login.html"></a>
             </div> -->
     <main>
+        <div class="experience-form" style="display: none;">
+            <h1>Select Your Experience Level</h1>
+            <form id="experienceForm">
+                <label for="experience">Select your experience level:</label>
+                <select id="experience" name="experience">
+                    <option value="fresher">Fresher</option>
+                    <option value="below 1 year">Below 1 Year</option>
+                    <option value="1 year">1 Year</option>
+                    <option value="more than 1 year">More than 1 Year</option>
+                </select>
+                <button class="experienceBtn" type="submit">Submit</button>
+            </form>
+        </div>
         
         <!-- <button id="toggleButton">Toggle Sidebar</button> -->
         <div class="quiz-box inactive">
@@ -91,7 +104,7 @@
         <div class="result-box inactive">
             <h2>Result</h2>
             <div class="result">
-                <div class="user-info-display"></div>
+                <h3 class="user-info-display" style="text-align: center; border: 2px solid white;"></h3>
                 <h3 class="total-ques">Total Questions : <span></span></h3>
                 <h3 class="right-ans">Right Answer : <span></span></h3>
                 <h3 class="wrong-ans">Wrong Answer : <span></span></h3>
