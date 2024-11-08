@@ -311,6 +311,14 @@ function displayResults() {
     skip_ans_r.innerText = skipAns;
     percentage.innerText = ((right_answers * 100) / shuffled.length).toFixed(2) + "%";
     document.querySelector(".final-score-value").innerText = (right_answers - wrong_answers * 0.5).toFixed(2); // Adjust for wrong answers
+        // Store the user's final score and other info in local storage
+        const userScoreInfo = {
+            ...storedInfo, // Spread the existing user info
+            score: (right_answers - wrong_answers * 0.5).toFixed(2), // Add the score to the object
+        };
+
+    // Save the updated object back to local storage
+    localStorage.setItem('userInfo', JSON.stringify(userScoreInfo));
 }
 
 // // Function to display answers

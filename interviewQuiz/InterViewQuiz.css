@@ -13,7 +13,9 @@ body {
     grid-template-columns: 300px 1fr;
     grid-template-rows: auto 1fr;
     grid-template-areas: "navbar navbar" "sidebar main";
-    background: linear-gradient(135deg, #3D1F4B, #069c9c, #001F3F );
+    /* background: linear-gradient(135deg, #3D1F4B, #069c9c, #001F3F ); */
+    background: linear-gradient(135deg, #003366, #4d4d4d);
+
     background-size: cover; 
     background-position: center; 
     font-family: 'Roboto', sans-serif;
@@ -640,5 +642,3 @@ select, .experienceBtn {
 .experienceBtn:hover {
     background-color: #0056b3;
 }
-
-
